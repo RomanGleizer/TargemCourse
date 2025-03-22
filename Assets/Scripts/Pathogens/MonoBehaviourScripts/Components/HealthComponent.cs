@@ -25,7 +25,7 @@ public class HealthComponent : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void InitializeCurrentHealth(float health)
+    public void InitializeCurrentHealthOnStart(float health)
     {
         _currentHealth = health;
     }
