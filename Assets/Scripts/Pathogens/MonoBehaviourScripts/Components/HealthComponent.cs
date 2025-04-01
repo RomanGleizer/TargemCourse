@@ -8,6 +8,8 @@ public class HealthComponent : MonoBehaviour
     public event Action<float> OnHealthChanged;
     public event Action OnDeath;
 
+    public float CurrentHealth => _currentHealth;
+
     public void TakeDamage(float damage) 
     {
         _currentHealth -= damage;

@@ -1,4 +1,4 @@
-﻿public class BasicPathogenMovement : IPathogenMovement
+﻿public class PathogenMovement : IPathogenMovement
 {
     public void MoveTo(Node targetNode)
     {
