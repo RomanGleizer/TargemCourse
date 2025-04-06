@@ -18,8 +18,9 @@ public class Cube : MonoBehaviour
         _textNumber.text = _number.ToString();
     }
 
-    public void ItsMe()
+    public void InteractionWithCard(Card card)
     {
-        print("This is me" + _number);
+        card.ReduceNumber(_number);
+        Destroy(gameObject);
     }
 }
