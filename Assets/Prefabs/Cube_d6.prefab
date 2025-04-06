@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5328612323466409397}
   - component: {fileID: 3125946970980072503}
   - component: {fileID: 1317583059024682361}
+  - component: {fileID: 610180875104423948}
   m_Layer: 5
   m_Name: Cube_d6
   m_TagString: Untagged
@@ -103,6 +104,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textNumber: {fileID: 445049650135001098}
+--- !u!225 &610180875104423948
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2366797158161936912}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7087220864896129648
 GameObject:
   m_ObjectHideFlags: 0

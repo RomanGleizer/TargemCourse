@@ -17,4 +17,9 @@ public class Cube : MonoBehaviour
         _number = Random.Range(1, 7);
         _textNumber.text = _number.ToString();
     }
+
+    public void ItsMe()
+    {
+        print("This is me" + _number);
+    }
 }

@@ -8,25 +8,29 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private Transform _parentForDrag;
     private RectTransform _rectTransform;
     private Canvas _canvas;
+    private CanvasGroup _canvasGroup;
 
     void Start()
     {
-        _rectTransform = GetComponent<RectTransform>();
-        _startPosition = transform.position;
-        GameObject canvasObject = GameObject.Find("DragAndDropCanvas");
-        _parentForDrag = canvasObject.transform;
+        GameObject canvasObject = GameObject.Find("GameCanvas");
+
+        _rectTransform = GetComponent<RectTransform>();       
         _canvas = canvasObject.GetComponent<Canvas>();
+        _canvasGroup = GetComponent<CanvasGroup>();
+
+        _startPosition = transform.position;        
+        _parentForDrag = canvasObject.transform;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         _parentBeforeDrag = transform.parent;
         transform.SetParent(_parentForDrag);
+        _canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        //transform.position = Input.mousePosition;
         _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
     }
 
@@ -34,5 +38,6 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         transform.position = _startPosition;
         transform.SetParent(_parentBeforeDrag);
+        _canvasGroup.blocksRaycasts = true;
     }
 }
