@@ -7,6 +7,7 @@ public class Cube : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textNumber;
     private int _number;
+    
     void Start()
     {
         UpdateNumber();        
