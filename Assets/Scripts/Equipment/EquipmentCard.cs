@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 
-// Переменовать в EquipmentCard на что-то другое (в данном случае это кубик)
 public class EquipmentCard : MonoBehaviour
 {
     [SerializeField] private EquipmentDefinition equipmentDefinition;
@@ -26,7 +25,7 @@ public class EquipmentCard : MonoBehaviour
     {
         if (equipmentDefinition.Condition == null || equipmentDefinition.Condition.IsSatisfied(_diceValue))
         {
-            print("Можно применить эффект");
+            equipmentDefinition.Effect.ApplyEffect(target, _diceValue);
         }
         else
         {
