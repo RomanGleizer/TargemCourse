@@ -1,13 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "EquipmentCards/Definition", fileName = "NewEquipmentDefinition")]
+[CreateAssetMenu(menuName = "Equipment/Definition", fileName = "NewEquipmentDefinition")]
 public class EquipmentDefinition : ScriptableObject
 {
     [SerializeField] private string _name;
     [TextArea] [SerializeField] private string _description;
-    [SerializeField] int _usageCount;
-    [SerializeField] AbstractEquipmentCondition _condition;
-    [SerializeField] AbstractDamageAction _effect;
+    [SerializeField] private int _usageCount;
+    [SerializeField] private AbstractEquipmentCondition _condition;
+    [SerializeField] private AbstractDamageAction _effect;
+    [SerializeField] private int _equipmentPower;
 
     public string Name => _name;
     public string Description => _description;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "EquipmentCards/Conditions/EvenCondition", fileName = "NewEvenCondition")]
+[CreateAssetMenu(menuName = "Equipment/Conditions/EvenCondition", fileName = "NewEvenCondition")]
 public class EvenCondition : AbstractEquipmentCondition
 {
     public override bool IsSatisfied(int diceValue)

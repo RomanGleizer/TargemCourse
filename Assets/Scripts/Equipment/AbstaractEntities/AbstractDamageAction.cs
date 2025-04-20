@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class AbstractDamageAction
+public abstract class AbstractDamageAction : ScriptableObject
 {
     protected abstract int CalculateDamage(int diceValue);
 
