@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Equipment/Effects/ConstantDamageEffect", fileName = "NewConstantDamageEffect")]
+[CreateAssetMenu(menuName = "Equipment/Effects/Damage/ConstantDamageEffect", fileName = "NewConstantDamageEffect")]
 public class ConstantDamageEffect : AbstractDamageAction
 {
     [SerializeField] private int damageAmount;

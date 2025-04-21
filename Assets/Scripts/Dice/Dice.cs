@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Cube : MonoBehaviour
+public class Dice : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textNumber;
     private int _number;

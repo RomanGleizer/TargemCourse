@@ -7,7 +7,7 @@ public class Card : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textNumber;
     private int _number;
-    private Cube _cube;
+    private Dice _dice;
 
     void Start()
     {
