@@ -7,13 +7,16 @@ public class HealthComponent : MonoBehaviour
 
     private float _currentHealth;
     private float _currentShield;
+    private int _currentPoison;
 
     public event Action<float> OnHealthChanged;
     public event Action<float> OnShieldChanged;
+    public event Action<int> OnPoisonChanged;
     public event Action OnDeath;
 
     public float CurrentHealth => _currentHealth;
     public float CurrentShield => _currentShield;
+    public int CurrentPoison => _currentPoison;
 
     public void TakeDamage(float damage)
     {
@@ -42,6 +45,20 @@ public class HealthComponent : MonoBehaviour
         }
     }
 
+    //Метод должен вызываться в начале хода
+    public void TakeDamageByPoison(float poison)
+    {
+        _currentHealth -= poison;
+        _currentPoison -= 1;
+        OnHealthChanged?.Invoke(_currentHealth);
+        OnPoisonChanged?.Invoke(_currentPoison);
+
+        if (_currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
     public void AddHealth(float heal)
     {
         _currentHealth += heal;
@@ -54,6 +71,11 @@ public class HealthComponent : MonoBehaviour
     public void AddShield(float shield)
     {
         _currentShield += shield;
+    }
+
+    public void AddPoison(int poison)
+    {
+        _currentPoison = poison;
     }
 
     private void Die()
