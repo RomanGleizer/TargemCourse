@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -5,8 +6,6 @@ public class EquipmentCard : MonoBehaviour
 {
     [SerializeField] private EquipmentDefinition equipmentDefinition;
     [SerializeField] private TextMeshProUGUI _textCondition;
-
-    private int _diceValue;
 
     public EquipmentDefinition EquipmentDefinition => equipmentDefinition;
 
@@ -20,15 +19,15 @@ public class EquipmentCard : MonoBehaviour
         _textCondition.text = EquipmentDefinition.Condition.ConditionText;
     }
 
-    public void ActivateEquipment(GameObject target)
+    public void ActivateEquipment(GameObject target, int diceValue)
     {
-        if (equipmentDefinition.Condition == null || equipmentDefinition.Condition.IsSatisfied(_diceValue))
+        if (equipmentDefinition.Condition == null || equipmentDefinition.Condition.IsSatisfied(diceValue))
         {
-            equipmentDefinition.Effect.ApplyEffect(target, _diceValue);
+            equipmentDefinition.Effect.ApplyEffect(target, diceValue);
         }
         else
         {
-            equipmentDefinition.Condition.ChangeCondition(_diceValue);            
+            equipmentDefinition.Condition.ChangeCondition(diceValue);            
         }
     }
 

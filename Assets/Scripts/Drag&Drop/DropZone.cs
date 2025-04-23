@@ -7,20 +7,21 @@ using UnityEngine.UIElements;
 
 public class DropZone : MonoBehaviour, IDropHandler
 {
-    private Card _card;
+    private EquipmentCard _card;
 
     private void Start()
     {
-        _card = GetComponent<Card>();
+        _card = GetComponent<EquipmentCard>();
     }
 
     public void OnDrop(PointerEventData eventData)
     {
         GameObject droppedObject = eventData.pointerDrag;
 
-        if (droppedObject.TryGetComponent(out EquipmentCard card))
+        if (droppedObject.TryGetComponent(out Dice dice))
         {
-            card.ActivateEquipment(gameObject);
+            dice.InteractionWithCard(_card);
+            Destroy(dice.gameObject);
         }
     }
 }

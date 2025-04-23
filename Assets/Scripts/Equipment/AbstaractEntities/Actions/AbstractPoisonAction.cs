@@ -7,10 +7,9 @@ public abstract class AbstractPoisonAction : ScriptableObject
     protected abstract int CalculatePoison();
 
     protected int CurrentPoison;
-    public void ApplyEffect(GameObject target)
+    public void ApplyEffect(GameObject enemy)
     {        
-        //Надо понять, как разделять своё здоровье и здоровье противника!
-        if (target.TryGetComponent<HealthComponent>(out var health))
+        if (enemy.TryGetComponent<HealthComponent>(out var health))
         {
             CurrentPoison = health.CurrentPoison;
             int poison = CalculatePoison();

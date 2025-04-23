@@ -7,10 +7,9 @@ public abstract class AbstractChillsAction : ScriptableObject
     protected abstract int CalculateChills();
 
     protected int CurrentChills;
-    public void ApplyEffect(GameObject target)
+    public void ApplyEffect(GameObject enemy)
     {
-        //Надо понять, как разделять своё здоровье и здоровье противника!
-        if (target.TryGetComponent<DicePanel>(out var dicePanel))
+        if (enemy.TryGetComponent<DicePanel>(out var dicePanel))
         {
             CurrentChills = dicePanel.CurrentChills;
             int chills = CalculateChills();

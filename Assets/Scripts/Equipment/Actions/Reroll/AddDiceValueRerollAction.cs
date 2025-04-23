@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Equipment/Effects/Reroll/AddDiceValueRerollAction", fileName = "NewAddDiceValueRerollAction")]
@@ -9,7 +7,7 @@ public class AddDiceValueRerollAction : AbstractRerollAction
     {
         if (target.TryGetComponent<DicePanel>(out DicePanel dicePanel))
         {
-                dicePanel.AddDice(diceValue + 1);            
+            dicePanel.AddDice(diceValue + 1);
         }
     }
 }

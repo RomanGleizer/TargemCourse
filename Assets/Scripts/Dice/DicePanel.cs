@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DicePanel : MonoBehaviour
 {
-    [SerializeField] private int _cubeCount = 3;
+    [SerializeField] private int _diceCount = 3;
     [SerializeField] private GameObject dicePrefab;
 
     private Transform parentTransform;
@@ -19,7 +19,7 @@ public class DicePanel : MonoBehaviour
     void Start()
     {
         parentTransform = transform;
-        for (int i = 0; i < _cubeCount; i++)
+        for (int i = 0; i < _diceCount; i++)
         {
             Instantiate(dicePrefab, parentTransform);
         }

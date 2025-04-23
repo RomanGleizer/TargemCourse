@@ -9,7 +9,6 @@ public abstract class AbstractShieldAction : ScriptableObject
     public void ApplyEffect(GameObject target, int diceValue)
     {
         int shield = CalculateShield(diceValue);
-        //Надо понять, как разделять своё здоровье и здоровье противника!
         if (target.TryGetComponent<HealthComponent>(out var health))
         {
             health.AddShield(shield);

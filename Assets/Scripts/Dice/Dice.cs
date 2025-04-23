@@ -6,23 +6,25 @@ using UnityEngine;
 public class Dice : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textNumber;
-    private int _number;
+    private int _value;
     
     public void UpdateNumber()
     {
-        _number = Random.Range(1, 7);
-        _textNumber.text = _number.ToString();
+        _value = Random.Range(1, 7);
+        _textNumber.text = _value.ToString();
     }
 
     public void UpdateNumber(int value)
     {
-        _number = value;
-        _textNumber.text = _number.ToString();
+        _value = value;
+        _textNumber.text = _value.ToString();
     }
 
-    public void InteractionWithCard(Card card)
+    public void InteractionWithCard(EquipmentCard card)
     {
-        card.ReduceNumber(_number);
-        Destroy(gameObject);
+        //Enemy enemy = Find....<Enemy>
+        //card.ActivateEquipment(gameobject, _value);
+
+        //Надо добавить и разделить врага и патогена все-таки пупуп
     }
 }

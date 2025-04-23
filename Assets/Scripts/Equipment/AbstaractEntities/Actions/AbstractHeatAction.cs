@@ -5,10 +5,9 @@ public abstract class AbstractHeatAction : ScriptableObject
     protected abstract int CalculateHeat();
 
     protected int CurrentHeat;
-    public void ApplyEffect(GameObject target)
+    public void ApplyEffect(GameObject enemy)
     {
-        //Надо понять, как разделять своё здоровье и здоровье противника!
-        if (target.TryGetComponent<DicePanel>(out var dicePanel))
+        if (enemy.TryGetComponent<DicePanel>(out var dicePanel))
         {
             CurrentHeat = dicePanel.CurrentHeat;
             int heat = CalculateHeat();
