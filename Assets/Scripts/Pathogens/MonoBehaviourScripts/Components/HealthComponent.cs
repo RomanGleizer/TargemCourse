@@ -71,11 +71,13 @@ public class HealthComponent : MonoBehaviour
     public void AddShield(float shield)
     {
         _currentShield += shield;
+        OnShieldChanged?.Invoke(_currentShield);
     }
 
     public void AddPoison(int poison)
     {
         _currentPoison = poison;
+        OnPoisonChanged?.Invoke(_currentPoison);
     }
 
     private void Die()

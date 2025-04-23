@@ -8,14 +8,15 @@ public class Dice : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textNumber;
     private int _number;
     
-    void Start()
-    {
-        UpdateNumber();        
-    }
-
     public void UpdateNumber()
     {
         _number = Random.Range(1, 7);
+        _textNumber.text = _number.ToString();
+    }
+
+    public void UpdateNumber(int value)
+    {
+        _number = value;
         _textNumber.text = _number.ToString();
     }
 

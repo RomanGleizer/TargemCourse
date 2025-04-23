@@ -6,7 +6,7 @@ public abstract class AbstractPoisonAction : ScriptableObject
 {
     protected abstract int CalculatePoison();
 
-    public int CurrentPoison;
+    protected int CurrentPoison;
     public void ApplyEffect(GameObject target)
     {        
         //Надо понять, как разделять своё здоровье и здоровье противника!
