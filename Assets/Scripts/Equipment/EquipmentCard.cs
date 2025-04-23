@@ -4,7 +4,7 @@ using UnityEngine;
 public class EquipmentCard : MonoBehaviour
 {
     [SerializeField] private EquipmentDefinition equipmentDefinition;
-    [SerializeField] private TextMeshProUGUI _textNumber;
+    [SerializeField] private TextMeshProUGUI _textCondition;
 
     private int _diceValue;
 
@@ -12,13 +12,12 @@ public class EquipmentCard : MonoBehaviour
 
     void Start()
     {
-        UpdateNumber();
+        UpdateConditionText();
     }
 
-    public void UpdateNumber()
+    public void UpdateConditionText()
     {
-        _diceValue = Random.Range(1, 7);
-        _textNumber.text = _diceValue.ToString();
+        _textCondition.text = EquipmentDefinition.Condition.ConditionText;
     }
 
     public void ActivateEquipment(GameObject target)
@@ -29,7 +28,7 @@ public class EquipmentCard : MonoBehaviour
         }
         else
         {
-            Debug.Log($"EquipmentCard: Выпавшее значение {_diceValue} не удовлетворяет условию активации для {equipmentDefinition.Name}.");
+            equipmentDefinition.Condition.ChangeCondition(_diceValue);            
         }
     }
 
