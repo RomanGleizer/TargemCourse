@@ -1,22 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class Dice : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _textNumber;
+    [SerializeField] private TextMeshPro _textNumber;
+
     private int _value;
-    
-    public void UpdateNumber()
+    private DiceDefinition _definition;
+
+    public int Value => _value;
+
+    public void Initialize(DiceDefinition definition)
     {
-        _value = Random.Range(1, 7);
-        _textNumber.text = _value.ToString();
+        _definition = definition;
+        Roll();
     }
 
-    public void UpdateNumber(int value)
+    public void Roll()
     {
-        _value = value;
+        if (_definition == null) return;
+        int max = _definition.Sides;
+        int val;
+        do
+        {
+            val = Random.Range(1, max + 1);
+        } while (_definition.OnlyEven && val % 2 != 0);
+        _value = val;
         _textNumber.text = _value.ToString();
     }
 

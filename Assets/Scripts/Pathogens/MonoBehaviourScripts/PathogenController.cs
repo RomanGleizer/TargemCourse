@@ -2,37 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(HealthComponent))]
+[RequireComponent(typeof(HealthComponent), typeof(DicePoolController))]
 public class PathogenController : MonoBehaviour
 {
-    [SerializeField] private PathogenDefinition definition;
-    [SerializeField] private Transform equipmentContainer;
-    [SerializeField] private EquipmentCard equipmentCardPrefab;
+    [SerializeField] private PathogenDefinition _definition;
 
+    private DicePoolController _dicePool;
     private HealthComponent _healthComponent;
-    private readonly List<EquipmentCard> _equipmentCards = new();
 
     private void Awake()
     {
         _healthComponent = GetComponent<HealthComponent>();
+        _dicePool = GetComponent<DicePoolController>();
     }
 
     private void Start()
     {
-        if (definition == null)
-        {
-            Debug.LogError("PathogenDefinition is null.");
-            return;
-        }
-
-        _healthComponent.InitializeCurrentHealthOnStart(definition.MaxHealth);
+        _healthComponent.InitializeCurrentHealthOnStart(_definition.MaxHealth);
+        _dicePool.InitializePool();
     }
 
-    public void TryActivateEquipment(EquipmentCard card, int diceValue)
+    public bool TryActivateEquipment(EquipmentCard card, Dice dice)
     {
-        if (card.CanActivate(diceValue))
+        if (card.CanActivate(dice.Value))
         {
-            card.ActivateEquipment(gameObject, diceValue);
+            card.ActivateEquipment(gameObject, dice.Value);
+            return true;
         }
+        return false;
     }
 }

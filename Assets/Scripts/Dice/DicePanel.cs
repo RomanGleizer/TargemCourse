@@ -29,13 +29,11 @@ public class DicePanel : MonoBehaviour
     {
         GameObject diceGO = Instantiate(dicePrefab, parentTransform);
         Dice dice = diceGO.GetComponent<Dice>();
-        dice.UpdateNumber();
     }
     public void AddDice(int value)
     {
         GameObject diceGO = Instantiate(dicePrefab, parentTransform);
         Dice dice = diceGO.GetComponent<Dice>();
-        dice.UpdateNumber(value);
     }
 
     public void AddHeat(int heat)

@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Pathogen/Definition")]
 public class PathogenDefinition : ScriptableObject
 {
-    [SerializeField] private List<EquipmentDefinition> _equipment;
+    [SerializeField] private List<EquipmentCard> _equipment;
     [SerializeField] private string _pathogenName;
     [TextArea]
     [SerializeField] private string _description;
@@ -14,5 +14,5 @@ public class PathogenDefinition : ScriptableObject
     public string Description => _description;
     public float MaxHealth => _maxHealth;
 
-    public IReadOnlyList<EquipmentDefinition> Equipment => _equipment;
+    public IReadOnlyList<EquipmentCard> Equipment => _equipment;
 }
