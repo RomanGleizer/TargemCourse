@@ -18,6 +18,16 @@ public class HealthComponent : MonoBehaviour
     public float CurrentShield => _currentShield;
     public int CurrentPoison => _currentPoison;
 
+    public void InitializeCurrentHealthOnStart(float health)
+    {
+        _currentHealth = health;
+        _currentShield = 0;
+        _currentPoison = 0;
+        OnHealthChanged?.Invoke(_currentHealth);
+        OnShieldChanged?.Invoke(_currentShield);
+        OnPoisonChanged?.Invoke(_currentPoison);
+    }
+
     public void TakeDamage(float damage)
     {
         if (_currentShield >= damage)
@@ -66,6 +76,8 @@ public class HealthComponent : MonoBehaviour
         {
             _currentHealth = _maxHealth;
         }
+
+        OnHealthChanged?.Invoke(_currentHealth);
     }
 
     public void AddShield(float shield)
@@ -76,6 +88,7 @@ public class HealthComponent : MonoBehaviour
 
     public void AddPoison(int poison)
     {
+        // _currentPoison += poison;
         _currentPoison = poison;
         OnPoisonChanged?.Invoke(_currentPoison);
     }
@@ -84,10 +97,5 @@ public class HealthComponent : MonoBehaviour
     {
         OnDeath?.Invoke();
         Destroy(gameObject);
-    }
-
-    public void InitializeCurrentHealthOnStart(float health)
-    {
-        _currentHealth = health;
     }
 }

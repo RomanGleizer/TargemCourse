@@ -4,35 +4,40 @@ using UnityEngine;
 
 public class EquipmentCard : MonoBehaviour
 {
-    [SerializeField] private EquipmentDefinition equipmentDefinition;
+    [SerializeField] private EquipmentDefinition _definition;
     [SerializeField] private TextMeshProUGUI _textCondition;
 
-    public EquipmentDefinition EquipmentDefinition => equipmentDefinition;
+    private int _remainingUses;
+
+    public EquipmentDefinition Definition => _definition;
+    public int RemainingUses => _remainingUses;
 
     void Start()
     {
+        _remainingUses = _definition.UsageCount;
         UpdateConditionText();
     }
 
     public void UpdateConditionText()
     {
-        _textCondition.text = EquipmentDefinition.Condition.ConditionText;
+        _textCondition.text = _definition.Condition?.ConditionText ?? string.Empty;
+    }
+
+    public bool CanActivate(int diceValue)
+    {
+        if (_remainingUses <= 0) return false;
+        var cond = _definition.Condition;
+        return cond == null || cond.IsSatisfied(diceValue);
     }
 
     public void ActivateEquipment(GameObject target, int diceValue)
     {
-        if (equipmentDefinition.Condition == null || equipmentDefinition.Condition.IsSatisfied(diceValue))
-        {
-            equipmentDefinition.Effect.ApplyEffect(target, diceValue);
-        }
-        else
-        {
-            equipmentDefinition.Condition.ChangeCondition(diceValue);            
-        }
+        _definition.Effect.ApplyEffect(target, diceValue);
+        _remainingUses--;
     }
 
-    public void InitializeEquipmentDefinitionOnStart()
+    public void ResetUses()
     {
-
+        _remainingUses = _definition.UsageCount;
     }
 }

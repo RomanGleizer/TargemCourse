@@ -1,69 +1,38 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
+[RequireComponent(typeof(HealthComponent))]
 public class PathogenController : MonoBehaviour
 {
     [SerializeField] private PathogenDefinition definition;
-    [SerializeField] private bool isCombatMode = false;
+    [SerializeField] private Transform equipmentContainer;
+    [SerializeField] private EquipmentCard equipmentCardPrefab;
 
     private HealthComponent _healthComponent;
-    private IPathogenBehavior _pathogenBehavior;
-    private ICombatAbility _combatAbility;
-    private IPathogenMovement _pathogenMovement;
+    private readonly List<EquipmentCard> _equipmentCards = new();
 
     private void Awake()
     {
         _healthComponent = GetComponent<HealthComponent>();
-
-        _combatAbility = new CombatAbility();
-        _pathogenMovement = new PathogenMovement();
-
-        if (isCombatMode)
-        {
-            _pathogenBehavior = new CombatPathogenBehavior(_combatAbility);
-        }
-        else
-        {
-            _pathogenBehavior = new NonCombatPathogenBehavior();
-        }
     }
 
     private void Start()
     {
-        if (definition != null && _healthComponent != null)
+        if (definition == null)
         {
-            _healthComponent.InitializeCurrentHealthOnStart(definition.MaxHealth);
-        }
-        else
-        {
-            Debug.LogError("Невозможно инициализировать здоровье патогена: компоненты HealthComponent и PathogenDefinition не могут быть null.");
+            Debug.LogError("PathogenDefinition is null.");
+            return;
         }
 
-        _pathogenBehavior.StartTurn();
+        _healthComponent.InitializeCurrentHealthOnStart(definition.MaxHealth);
     }
 
-    public void PerformAction(int diceValue)
+    public void TryActivateEquipment(EquipmentCard card, int diceValue)
     {
-        _pathogenBehavior.ExecuteAction(diceValue);
-    }
-
-    public void MoveToNode(Node targetNode)
-    {
-        _pathogenMovement.MoveTo(targetNode);
-    }
-
-    public Node GetCurrentNode()
-    {
-        return _pathogenMovement.GetCurrentNode();
-    }
-
-    public void EndTurn()
-    {
-        _pathogenBehavior.EndTurn();
-    }
-
-    public void SetBehavior(IPathogenBehavior newBehavior)
-    {
-        _pathogenBehavior = newBehavior;
-        _pathogenBehavior.StartTurn();
+        if (card.CanActivate(diceValue))
+        {
+            card.ActivateEquipment(gameObject, diceValue);
+        }
     }
 }
