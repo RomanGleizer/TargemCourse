@@ -3,9 +3,8 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(PathogenController), typeof(DicePoolController))]
-public class EnemyAIController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
-    // Пусть пока побудет здесь, но потом это нужно будет перенести
     [SerializeField] private List<EquipmentCard> _equipmentCards;
 
     private DicePoolController _dicePool;
@@ -15,7 +14,7 @@ public class EnemyAIController : MonoBehaviour
         _dicePool = GetComponent<DicePoolController>();
     }
 
-    public void ExecuteTurn()
+    public void ActivateEquipment()
     {
         var availableDice = _dicePool.GetDicePool();
 
@@ -30,9 +29,9 @@ public class EnemyAIController : MonoBehaviour
             {
                 var bestDice = validDice.Last();
 
-                // Код для изспользования снаряжения
-
+                card.ActivateEquipment(gameObject, bestDice.Value);
                 availableDice.Remove(bestDice);
+
                 break;
             }
         }
