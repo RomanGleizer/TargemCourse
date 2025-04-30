@@ -7,12 +7,12 @@ public class EquipmentDefinition : ScriptableObject
     [TextArea] [SerializeField] private string _description;
     [SerializeField] private int _usageCount;
     [SerializeField] private AbstractEquipmentCondition _condition;
-    [SerializeField] private AbstractDamageAction _effect;
+    [SerializeField] private AbstractAction _effect;
     [SerializeField] private int _equipmentPower;
 
     public string Name => _name;
     public string Description => _description;
     public int UsageCount => _usageCount;
     public AbstractEquipmentCondition Condition => _condition;
-    public AbstractDamageAction Effect => _effect;
+    public AbstractAction Effect => _effect;
 }

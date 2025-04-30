@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractChillsAction : ScriptableObject
+public abstract class AbstractChillsAction : AbstractAction
 {
     protected abstract int CalculateChills();
 
     protected int CurrentChills;
-    public void ApplyEffect(GameObject enemy)
+    public override void ApplyEffect(GameObject attacker, GameObject target, int diceValue)
     {
-        if (enemy.TryGetComponent<DicePanel>(out var dicePanel))
+        if (target.TryGetComponent<DicePanel>(out var dicePanel))
         {
             CurrentChills = dicePanel.CurrentChills;
             int chills = CalculateChills();

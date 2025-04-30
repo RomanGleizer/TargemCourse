@@ -1,14 +1,13 @@
 using UnityEngine;
 
-public abstract class AbstractHealAction : ScriptableObject
+public abstract class AbstractHealAction : AbstractAction
 {
     protected abstract int CalculateHeal(int diceValue);
 
-    public void ApplyEffect(GameObject target, int diceValue)
+    public override void ApplyEffect(GameObject attacker, GameObject target, int diceValue)
     {
         int heal = CalculateHeal(diceValue);
-        //Надо понять, как разделять своё здоровье и здоровье противника!
-        if (target.TryGetComponent<HealthComponent>(out var health))
+        if (attacker.TryGetComponent<HealthComponent>(out var health))
         {
             health.AddHealth(heal);
         }

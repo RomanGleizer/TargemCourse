@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractPoisonAction : ScriptableObject
+public abstract class AbstractPoisonAction : AbstractAction
 {
     protected abstract int CalculatePoison();
 
     protected int CurrentPoison;
-    public void ApplyEffect(GameObject enemy)
+    public override void ApplyEffect(GameObject attacker, GameObject target, int diceValue)
     {        
-        if (enemy.TryGetComponent<HealthComponent>(out var health))
+        if (target.TryGetComponent<HealthComponent>(out var health))
         {
             CurrentPoison = health.CurrentPoison;
             int poison = CalculatePoison();

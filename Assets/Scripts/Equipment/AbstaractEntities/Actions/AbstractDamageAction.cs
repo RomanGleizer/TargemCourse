@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public abstract class AbstractDamageAction : ScriptableObject
+public abstract class AbstractDamageAction : AbstractAction
 {
     protected abstract int CalculateDamage(int diceValue);
 
-    public void ApplyEffect(GameObject enemy, int diceValue)
+    public override void ApplyEffect(GameObject attacker, GameObject target, int diceValue)
     {
         int damage = CalculateDamage(diceValue);
-        if (enemy.TryGetComponent<HealthComponent>(out var health))
+        if (target.TryGetComponent<HealthComponent>(out var health))
         {
             health.TakeDamage(damage);
         }

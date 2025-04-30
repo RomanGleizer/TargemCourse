@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstractShieldAction : ScriptableObject
+public abstract class AbstractShieldAction : AbstractAction
 {
     protected abstract int CalculateShield(int diceValue);
 
-    public void ApplyEffect(GameObject target, int diceValue)
+    public override void ApplyEffect(GameObject attacker, GameObject target, int diceValue)
     {
         int shield = CalculateShield(diceValue);
-        if (target.TryGetComponent<HealthComponent>(out var health))
+        if (attacker.TryGetComponent<HealthComponent>(out var health))
         {
             health.AddShield(shield);
         }

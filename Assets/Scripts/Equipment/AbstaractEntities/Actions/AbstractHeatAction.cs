@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public abstract class AbstractHeatAction : ScriptableObject
+public abstract class AbstractHeatAction : AbstractAction
 {
     protected abstract int CalculateHeat();
 
     protected int CurrentHeat;
-    public void ApplyEffect(GameObject enemy)
+    public override void ApplyEffect(GameObject attacker, GameObject target, int diceValue)
     {
-        if (enemy.TryGetComponent<DicePanel>(out var dicePanel))
+        if (target.TryGetComponent<DicePanel>(out var dicePanel))
         {
             CurrentHeat = dicePanel.CurrentHeat;
             int heat = CalculateHeat();
