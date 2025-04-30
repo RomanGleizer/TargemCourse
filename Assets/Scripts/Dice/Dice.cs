@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Dice : MonoBehaviour
 {
-    [SerializeField] private TextMeshPro _textNumber;
+    [SerializeField] private TextMeshProUGUI _textNumber;
 
     private int _value;
     private DiceDefinition _definition;
+    private PathogenController _player;
 
     public int Value => _value;
 
@@ -28,13 +29,5 @@ public class Dice : MonoBehaviour
         } while (_definition.OnlyEven && val % 2 != 0);
         _value = val;
         _textNumber.text = _value.ToString();
-    }
-
-    public void InteractionWithCard(EquipmentCard card)
-    {
-        //Enemy enemy = Find....<Enemy>
-        //card.ActivateEquipment(gameobject, _value);
-
-        //Надо добавить и разделить врага и патогена все-таки пупуп
     }
 }

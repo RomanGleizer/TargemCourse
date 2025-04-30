@@ -29,6 +29,8 @@ public class PathogenController : MonoBehaviour
         if (card.CanActivate(dice.Value))
         {
             card.ActivateEquipment(gameObject, _enemy.gameObject, dice.Value);
+            Destroy(card.gameObject);
+            Destroy(dice.gameObject);
             return true;
         }
         return false;

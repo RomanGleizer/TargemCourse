@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Equipment/Conditions/NeedsCondition", fileName = "NewNeedsCondition")]
 public class NeedsCondition : AbstractEquipmentCondition
 {
     [SerializeField] int neededValue;

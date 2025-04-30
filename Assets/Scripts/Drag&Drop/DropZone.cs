@@ -8,10 +8,12 @@ using UnityEngine.UIElements;
 public class DropZone : MonoBehaviour, IDropHandler
 {
     private EquipmentCard _card;
+    private PathogenController _player;
 
     private void Start()
     {
         _card = GetComponent<EquipmentCard>();
+        _player = FindObjectOfType<PathogenController>();
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -20,8 +22,9 @@ public class DropZone : MonoBehaviour, IDropHandler
 
         if (droppedObject.TryGetComponent(out Dice dice))
         {
-            dice.InteractionWithCard(_card);
-            Destroy(dice.gameObject);
+            _player.TryActivateEquipment(_card, dice);           
+            //Проверить возвращение кубика при невыполнении
+            //Как вариант, сделать уничтожение кубика прямо здесь (равносильно)
         }
     }
 }

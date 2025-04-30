@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5f90d9764624945bedbe6658b59d2e, type: 3}
+  m_Name: 4_InfectedUppercut
+  m_EditorClassIdentifier: 
+  _name: "\u0417\u0430\u0440\u0430\u0436\u0451\u043D\u043D\u044B\u0439 \u0430\u043F\u043F\u0435\u0440\u043A\u043E\u0442"
+  _description: "\u04252 \u0443\u0440\u043E\u043D\u0430 "
+  _usageCount: 1
+  _condition: {fileID: 11400000, guid: 32f71c6dc39aae0459a2010d4d9a927b, type: 2}
+  _effects:
+  - {fileID: 11400000, guid: b13b6da5ca405f143a392c014ed06be8, type: 2}
+  _equipmentPower: 0
