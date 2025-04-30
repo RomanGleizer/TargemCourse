@@ -30,9 +30,9 @@ public class EquipmentCard : MonoBehaviour
         return cond == null || cond.IsSatisfied(diceValue);
     }
 
-    public void ActivateEquipment(GameObject target, int diceValue)
+    public void ActivateEquipment(GameObject attacker, GameObject target, int diceValue)
     {
-        _definition.Effect.ApplyEffect(target, diceValue);
+        _definition.Effect.ApplyEffect(attacker, target, diceValue);
         _remainingUses--;
     }
 
