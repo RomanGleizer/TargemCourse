@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -32,8 +31,12 @@ public class EquipmentCard : MonoBehaviour
 
     public void ActivateEquipment(GameObject attacker, GameObject target, int diceValue)
     {
-        _definition.Effect.ApplyEffect(attacker, target, diceValue);
-        _remainingUses--;
+        foreach (var effect in _definition.Effects)
+        {
+            effect.ApplyEffect(attacker, target, diceValue);
+            _remainingUses--;
+        }
+
     }
 
     public void ResetUses()

@@ -9,9 +9,11 @@ public class PathogenController : MonoBehaviour
 
     private DicePoolController _dicePool;
     private HealthComponent _healthComponent;
+    private EnemyController _enemy;
 
     private void Awake()
     {
+        _enemy = FindObjectOfType<EnemyController>();
         _healthComponent = GetComponent<HealthComponent>();
         _dicePool = GetComponent<DicePoolController>();
     }
@@ -26,7 +28,7 @@ public class PathogenController : MonoBehaviour
     {
         if (card.CanActivate(dice.Value))
         {
-            card.ActivateEquipment(gameObject, dice.Value);
+            card.ActivateEquipment(gameObject, _enemy.gameObject, dice.Value);
             return true;
         }
         return false;

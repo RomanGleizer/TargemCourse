@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 692532616}
   - component: {fileID: 692532620}
   m_Layer: 5
-  m_Name: PlayerCardPanel
+  m_Name: CardPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -630,7 +630,6 @@ GameObject:
   - component: {fileID: 1118150546}
   - component: {fileID: 1118150545}
   - component: {fileID: 1118150544}
-  - component: {fileID: 1118150548}
   m_Layer: 5
   m_Name: EnemyDicePanel
   m_TagString: Untagged
@@ -696,7 +695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diceCount: 3
-  dicePrefab: {fileID: 0}
+  dicePrefab: {fileID: 2366797158161936912, guid: 015a92b76692d7e4ea6982e4bdb60d2c, type: 3}
 --- !u!114 &1118150546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,18 +734,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118150542}
   m_CullTransparentMesh: 1
---- !u!114 &1118150548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118150542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 865ba59d029cf784a86ec0b85edb6a70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1408124327
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,7 +747,6 @@ GameObject:
   - component: {fileID: 1408124329}
   - component: {fileID: 1408124332}
   - component: {fileID: 1408124331}
-  - component: {fileID: 1408124333}
   m_Layer: 5
   m_Name: PlayerDicePanel
   m_TagString: Untagged
@@ -864,19 +850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _diceCount: 3
-  dicePrefab: {fileID: 0}
---- !u!114 &1408124333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408124327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 865ba59d029cf784a86ec0b85edb6a70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  dicePrefab: {fileID: 2366797158161936912, guid: 015a92b76692d7e4ea6982e4bdb60d2c, type: 3}
 --- !u!1 &1616177622
 GameObject:
   m_ObjectHideFlags: 0
