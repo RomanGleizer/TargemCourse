@@ -17,10 +17,10 @@ public class HealthComponent : MonoBehaviour
     public float CurrentHealth => _currentHealth;
     public float CurrentShield => _currentShield;
     public int CurrentPoison => _currentPoison;
-
-    public void InitializeCurrentHealthOnStart(float health)
+    public float MaxHealth => _maxHealth;
+    public void InitializeHealth()
     {
-        _currentHealth = health;
+        _currentHealth = _maxHealth;
         _currentShield = 0;
         _currentPoison = 0;
         OnHealthChanged?.Invoke(_currentHealth);

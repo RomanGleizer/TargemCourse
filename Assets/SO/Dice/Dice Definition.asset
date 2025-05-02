@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8c883466c3613648b21d2b109d14129, type: 3}
-  m_Name: 3
+  m_Script: {fileID: 11500000, guid: 6573ecfe38dd0df4fb9337d715de8ce8, type: 3}
+  m_Name: Dice Definition
   m_EditorClassIdentifier: 
-  ConditionText: "\u041C\u0438\u043D\u0438\u043C\u0430\u043B\u044C\u043D\u043E 3"
-  neededValue: 3
+  _sides: 6
+  _onlyEven: 0

@@ -2,44 +2,59 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(PathogenController), typeof(DicePoolController))]
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private List<EquipmentCard> _equipmentCards;
+    [SerializeField] private DicePanel _dicePanel;
+    [SerializeField] private DiceDefinition _diceDefinition;
+    [SerializeField] private List<EquipmentDefinition> _equipmentDefinitions;
 
-    private DicePoolController _dicePool;
-    private PathogenController _player;
     private HealthComponent _healthComponent;
+    private PathogenController _playerController;
 
     private void Awake()
     {
-        _player = FindObjectOfType<PathogenController>();
         _healthComponent = GetComponent<HealthComponent>();
-        _dicePool = GetComponent<DicePoolController>();
+        _playerController = FindObjectOfType<PathogenController>();
+
+        _healthComponent.InitializeHealth();
     }
-    public void Start()
+
+    public void StartTurn()
     {
-        //_healthComponent.InitializeCurrentHealthOnStart(_definition.MaxHealth);
+        if (_healthComponent.CurrentPoison > 0)
+            _healthComponent.TakeDamageByPoison(_healthComponent.CurrentPoison);
+
+        GenerateDice();
+        ActivateEquipment();
+    }
+
+    private void GenerateDice()
+    {
+        _dicePanel.ClearDice();
+        for (int i = 0; i < _dicePanel.InitialCount; i++)
+            _dicePanel.AddDice(_diceDefinition);
     }
 
     public void ActivateEquipment()
     {
-        var availableDice = _dicePool.GetDicePool();
-
-        foreach (var card in _equipmentCards)
+        var diceList = _dicePanel.GetDice();
+        foreach (var eqDef in _equipmentDefinitions)
         {
-            var validDice = availableDice
-                .Where(d => card.CanActivate(d.Value))
+            var valid = diceList
+                .Where(d => eqDef.Condition == null
+                            || eqDef.Condition.IsSatisfied(d.Value))
                 .OrderBy(d => d.Value)
                 .ToList();
+            if (!valid.Any()) continue;
 
-            if (validDice.Count > 0)
-            {
-                var bestDice = validDice.Last();
+            var chosen = valid.Last();
+            foreach (var effect in eqDef.Effects)
+                effect.ApplyEffect(gameObject,
+                                   _playerController.gameObject,
+                                   chosen.Value);
 
-                card.ActivateEquipment(gameObject, _player.gameObject, bestDice.Value);
-                availableDice.Remove(bestDice);
-            }
+            diceList.Remove(chosen);
+            Destroy(chosen.gameObject);
         }
     }
 }

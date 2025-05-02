@@ -11,15 +11,24 @@ public class EquipmentCard : MonoBehaviour
     public EquipmentDefinition Definition => _definition;
     public int RemainingUses => _remainingUses;
 
+    public void Initialize(EquipmentDefinition definition)
+    {
+        _definition = definition;
+        ResetUses();
+        UpdateConditionText();
+    }
+
     void Start()
     {
-        _remainingUses = _definition.UsageCount;
+        // Если карточка создана из инспектора, сбросим состояния
+        if (_remainingUses == 0)
+            ResetUses();
         UpdateConditionText();
     }
 
     public void UpdateConditionText()
     {
-        _textCondition.text = _definition.Condition?.ConditionText ?? string.Empty;
+        _textCondition.text = _definition.Condition != null ? _definition.Condition.ConditionText : null ?? string.Empty;
     }
 
     public bool CanActivate(int diceValue)
@@ -31,12 +40,15 @@ public class EquipmentCard : MonoBehaviour
 
     public void ActivateEquipment(GameObject attacker, GameObject target, int diceValue)
     {
+        if (!CanActivate(diceValue)) return;
         foreach (var effect in _definition.Effects)
-        {
             effect.ApplyEffect(attacker, target, diceValue);
-            _remainingUses--;
-        }
 
+        _remainingUses--;
+        if (_remainingUses <= 0)
+            Destroy(gameObject);
+        else
+            UpdateConditionText();
     }
 
     public void ResetUses()

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e228a569e07d0e84db50e85b104e87a2, type: 3}
   m_Name: OddCondition
   m_EditorClassIdentifier: 
-  ConditionText: 
+  ConditionText: "\u041D\u0435\u0447\u0435\u0442\u043D\u043E\u0435"

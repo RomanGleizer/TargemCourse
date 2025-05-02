@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eacda8cf22db574e8d5e0f4c9056bd7, type: 3}
   m_Name: WithoutCondition
   m_EditorClassIdentifier: 
-  ConditionText: 
+  ConditionText: "\u0411\u0435\u0437 \u0443\u0441\u043B\u043E\u0432\u0438\u0439"
