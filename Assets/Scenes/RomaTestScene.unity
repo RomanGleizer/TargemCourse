@@ -1372,6 +1372,13 @@ MonoBehaviour:
   _continueButton: {fileID: 1304851588}
   _battleLogText: {fileID: 777464908}
   _cardPanel: {fileID: 0}
+  _countConditions:
+  - {fileID: 11400000, guid: 44e96ab198063a64782f4d0ef04951f0, type: 2}
+  - {fileID: 11400000, guid: e2946288e9f8cab41b513a9c8a85bebf, type: 2}
+  - {fileID: 11400000, guid: c4319159babb8cb4facfbecdc248126c, type: 2}
+  - {fileID: 11400000, guid: 9749118f42e3df84682725d2fa441ebe, type: 2}
+  - {fileID: 11400000, guid: 7404032677f92ce4e8356e3062a9b892, type: 2}
+  - {fileID: 11400000, guid: 6aba7454c95d50c439b943cc506ce5f2, type: 2}
 --- !u!4 &1276551037
 Transform:
   m_ObjectHideFlags: 0
@@ -1987,7 +1994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2525218d49bb4993b543a4ee00426332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 5
+  _maxHealth: 40
 --- !u!4 &2131646192
 Transform:
   m_ObjectHideFlags: 0

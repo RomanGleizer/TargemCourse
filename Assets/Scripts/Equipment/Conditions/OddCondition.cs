@@ -16,4 +16,9 @@ public class OddCondition : AbstractEquipmentCondition
         Debug.Log($"EquipmentCard: Выпавшее значение {diceValue} четное.");
         return false;
     }
+
+    public override void ResetCondition()
+    {
+        return;
+    }
 }

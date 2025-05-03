@@ -16,7 +16,7 @@ MonoBehaviour:
   _description: "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u0435\u0442
     6 \u0425\u041F"
   _usageCount: 1
-  _condition: {fileID: 11400000, guid: e2946288e9f8cab41b513a9c8a85bebf, type: 2}
+  _condition: {fileID: 11400000, guid: f026b71f44dfd73419b07c189c28755a, type: 2}
   _effects:
   - {fileID: 11400000, guid: 0c22dab18be7b394c89770a85950d495, type: 2}
   _equipmentPower: 5

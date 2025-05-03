@@ -13,4 +13,9 @@ public class EvenCondition : AbstractEquipmentCondition
         Debug.Log($"EquipmentCard: Выпавшее значение {diceValue} нечетное.");
         return false;
     }
+
+    public override void ResetCondition()
+    {
+        return;
+    }
 }

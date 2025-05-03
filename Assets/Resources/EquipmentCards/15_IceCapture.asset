@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: "\u041B\u0435\u0434\u044F\u043D\u043E\u0439 \u0437\u0430\u0445\u0432\u0430\u0442"
   _description: "4 \u0443\u0440\u043E\u043D\u0430; + 1 \u043E\u0437\u043D\u043E\u0431"
   _usageCount: -1
-  _condition: {fileID: 11400000, guid: e2946288e9f8cab41b513a9c8a85bebf, type: 2}
+  _condition: {fileID: 11400000, guid: 9fe91b52ef0959b4390681cbd25a2126, type: 2}
   _effects:
   - {fileID: 11400000, guid: d868d555a1635d945b4fbf58ae2240ef, type: 2}
   - {fileID: 11400000, guid: c6b0e5bc010a5634e91c58b546ab417f, type: 2}

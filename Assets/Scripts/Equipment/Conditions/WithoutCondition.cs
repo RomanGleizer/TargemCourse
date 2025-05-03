@@ -15,4 +15,9 @@ public class WithoutCondition : AbstractEquipmentCondition
         Debug.Log($"Какая-то мощная ошибка, так не должно быть :(");
         return false;
     }
+
+    public override void ResetCondition()
+    {
+        return;
+    }
 }

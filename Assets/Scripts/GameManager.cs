@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _battleLogText;
     [SerializeField] private CardPanel _cardPanel;
 
+    [SerializeField] private CountCondition[] _countConditions;
+
     private bool _continuePressed;
     private bool _battleEnded;
 
@@ -52,6 +54,11 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator BattleLoop()
     {
+        foreach (var cond in _countConditions)
+        {
+            cond.ResetCondition();
+        }
+
         while (true)
         {
             Log("Начало хода игрока.");
@@ -87,6 +94,7 @@ public class GameManager : MonoBehaviour
         }
 
         Log("Бой завершён.");
+        // Здесь сделать очищение всех ConditionCount (хз, как)
     }
 
     public void Log(string message)

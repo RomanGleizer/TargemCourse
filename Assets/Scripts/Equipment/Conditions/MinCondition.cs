@@ -16,4 +16,9 @@ public class MinCondition : AbstractEquipmentCondition
         Debug.Log($"EquipmentCard: Выпавшее значение {diceValue} меньше необходимого.");
         return false;
     }
+
+    public override void ResetCondition()
+    {
+        return;
+    }
 }

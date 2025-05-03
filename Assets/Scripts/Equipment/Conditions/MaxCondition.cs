@@ -14,4 +14,9 @@ public class MaxCondition : AbstractEquipmentCondition
         Debug.Log($"EquipmentCard: Выпавшее значение {diceValue} больше необходимого.");
         return false;
     }
+
+    public override void ResetCondition()
+    {
+        return;
+    }
 }

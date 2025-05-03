@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c01a1b2343ee4f40b8212154f5c28fd, type: 3}
-  m_Name: 8
+  m_Name: 8_6
   m_EditorClassIdentifier: 
   ConditionText: 8
   neededValue: 8
+  _initialValue: 8
