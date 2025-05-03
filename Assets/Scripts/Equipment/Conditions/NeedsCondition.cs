@@ -11,9 +11,9 @@ public class NeedsCondition : AbstractEquipmentCondition
         return diceValue == neededValue;
     }
 
-    public override void ChangeCondition(int diceValue)
+    public override bool ChangeCondition(int diceValue)
     {
         Debug.Log($"EquipmentCard: Выпавшее значение {diceValue} не равно необходимому.");
-        return;
+        return false;
     }
 }

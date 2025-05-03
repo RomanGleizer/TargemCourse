@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private DicePanel _dicePanel;
     [SerializeField] private DiceDefinition _diceDefinition;
     [SerializeField] private List<EquipmentDefinition> _equipmentDefinitions;
+    [SerializeField] private CardPanel _cardPanel;
 
     private HealthComponent _healthComponent;
     private PathogenController _playerController;
@@ -19,13 +21,24 @@ public class EnemyController : MonoBehaviour
         _healthComponent.InitializeHealth();
     }
 
-    public void StartTurn()
+    public IEnumerator StartTurn()
     {
         if (_healthComponent.CurrentPoison > 0)
             _healthComponent.TakeDamageByPoison(_healthComponent.CurrentPoison);
 
         GenerateDice();
-        ActivateEquipment();
+        GenerateCard();
+        yield return ActivateEquipment();
+    }
+
+    public void ClearDice()
+    {
+        _dicePanel.ClearDice();
+    }
+
+    public void ClearCard()
+    {
+        _cardPanel.ClearCard();
     }
 
     private void GenerateDice()
@@ -35,7 +48,15 @@ public class EnemyController : MonoBehaviour
             _dicePanel.AddDice(_diceDefinition);
     }
 
-    public void ActivateEquipment()
+    private void GenerateCard()
+    {
+        foreach (var eqDef in _equipmentDefinitions)
+        {
+            _cardPanel.AddEquipment(eqDef);
+        }
+    }
+
+    public IEnumerator ActivateEquipment()
     {
         var diceList = _dicePanel.GetDice();
         foreach (var eqDef in _equipmentDefinitions)
@@ -49,12 +70,15 @@ public class EnemyController : MonoBehaviour
 
             var chosen = valid.Last();
             foreach (var effect in eqDef.Effects)
-                effect.ApplyEffect(gameObject,
-                                   _playerController.gameObject,
-                                   chosen.Value);
+            {
+                effect.ApplyEffect(gameObject, _playerController.gameObject, chosen.Value);
+            }
 
             diceList.Remove(chosen);
             Destroy(chosen.gameObject);
+            yield return new WaitForSeconds(2f);
         }
+        ClearDice();
+        ClearCard();
     }
 }

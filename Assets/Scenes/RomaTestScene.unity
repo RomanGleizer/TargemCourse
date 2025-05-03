@@ -260,9 +260,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _definition: {fileID: 11400000, guid: f854e72262b7f754198d383093b16aed, type: 2}
   _equipmentPanel: {fileID: 692532615}
-  _equipmentCardPrefab: {fileID: 4907754823037070566, guid: 66569edc61cccf9488c700afab256e1f, type: 3}
   _dicePanel: {fileID: 1408124332}
   _diceDefinition: {fileID: 11400000, guid: 917f328866f22ba4583c0f4687d1ea7b, type: 2}
+  _cardPanel: {fileID: 692532619}
 --- !u!4 &19511532
 Transform:
   m_ObjectHideFlags: 0
@@ -717,6 +717,7 @@ GameObject:
   - component: {fileID: 692532618}
   - component: {fileID: 692532617}
   - component: {fileID: 692532616}
+  - component: {fileID: 692532619}
   m_Layer: 5
   m_Name: CardPanel
   m_TagString: Untagged
@@ -805,6 +806,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692532614}
   m_CullTransparentMesh: 1
+--- !u!114 &692532619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 692532614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b9302c668764e4d9da3e2db2331c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _equipmentCardPrefab: {fileID: 4907754823037070566, guid: 66569edc61cccf9488c700afab256e1f, type: 3}
 --- !u!1 &770030572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1357,6 +1371,7 @@ MonoBehaviour:
   _enemy: {fileID: 2131646190}
   _continueButton: {fileID: 1304851588}
   _battleLogText: {fileID: 777464908}
+  _cardPanel: {fileID: 0}
 --- !u!4 &1276551037
 Transform:
   m_ObjectHideFlags: 0
@@ -1959,6 +1974,7 @@ MonoBehaviour:
   _equipmentDefinitions:
   - {fileID: 11400000, guid: 980c20b5780fc4344b1e97b8687def99, type: 2}
   - {fileID: 11400000, guid: f7f05a895594ea24581b4f7f38179d1c, type: 2}
+  _cardPanel: {fileID: 692532619}
 --- !u!114 &2131646191
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,9 +11,9 @@ public class OddCondition : AbstractEquipmentCondition
         return diceValue % 2 != 0;
     }
 
-    public override void ChangeCondition(int diceValue)
+    public override bool ChangeCondition(int diceValue)
     {
         Debug.Log($"EquipmentCard: Выпавшее значение {diceValue} четное.");
-        return;
+        return false;
     }
 }

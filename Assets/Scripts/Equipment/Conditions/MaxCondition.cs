@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Equipment/Conditions/MaxCondition", fileName = "NewMaxCondition")]
@@ -11,9 +9,9 @@ public class MaxCondition : AbstractEquipmentCondition
         return diceValue <= neededValue;
     }
 
-    public override void ChangeCondition(int diceValue)
+    public override bool ChangeCondition(int diceValue)
     {
         Debug.Log($"EquipmentCard: Выпавшее значение {diceValue} больше необходимого.");
-        return;
+        return false;
     }
 }

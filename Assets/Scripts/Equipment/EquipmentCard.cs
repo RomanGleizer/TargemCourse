@@ -7,6 +7,7 @@ public class EquipmentCard : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textCondition;
 
     private int _remainingUses;
+    private AbstractEquipmentCondition _runtimeCondition;
 
     public EquipmentDefinition Definition => _definition;
     public int RemainingUses => _remainingUses;
@@ -14,6 +15,10 @@ public class EquipmentCard : MonoBehaviour
     public void Initialize(EquipmentDefinition definition)
     {
         _definition = definition;
+        _runtimeCondition = _definition.Condition != null
+        ? ScriptableObject.Instantiate(_definition.Condition)
+        : null;
+
         ResetUses();
         UpdateConditionText();
     }
@@ -28,26 +33,31 @@ public class EquipmentCard : MonoBehaviour
 
     public void UpdateConditionText()
     {
-        _textCondition.text = _definition.Condition != null ? _definition.Condition.ConditionText : null ?? string.Empty;
+        _textCondition.text = _runtimeCondition != null ? _runtimeCondition.ConditionText : null ?? string.Empty;
     }
 
     public bool CanActivate(int diceValue)
     {
         if (_remainingUses <= 0) return false;
-        var cond = _definition.Condition;
+        var cond = _runtimeCondition;
         return cond == null || cond.IsSatisfied(diceValue);
     }
 
     public void ActivateEquipment(GameObject attacker, GameObject target, Dice dice)
     {
-        var cond = _definition.Condition;
+        var cond = _runtimeCondition;
         if (!CanActivate(dice.Value))
         {
-            cond.ChangeCondition(dice.Value);
-            return;
+            if (cond.ChangeCondition(dice.Value))
+            {
+                _textCondition.text = cond.ConditionText;
+                Destroy(dice.gameObject);
+            };
+
+            if (!CanActivate(dice.Value)) return;
         };
 
-        Destroy(dice);
+        Destroy(dice.gameObject);
         foreach (var effect in _definition.Effects)
             effect.ApplyEffect(attacker, target, dice.Value);
 

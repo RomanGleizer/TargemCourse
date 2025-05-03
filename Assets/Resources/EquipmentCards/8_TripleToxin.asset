@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5f90d9764624945bedbe6658b59d2e, type: 3}
+  m_Name: 8_TripleToxin
+  m_EditorClassIdentifier: 
+  _name: "\u0422\u0440\u043E\u0439\u043D\u043E\u0439 \u0442\u043E\u043A\u0441\u0438\u043D"
+  _description: "\u04253 \u0443\u0440\u043E\u043D\u0430 "
+  _usageCount: 1
+  _condition: {fileID: 11400000, guid: 31da24a49ca5ecf418fdb6dfe985ff72, type: 2}
+  _effects:
+  - {fileID: 11400000, guid: f5fad255f0c516248bf82790d4e94dc8, type: 2}
+  _equipmentPower: 3

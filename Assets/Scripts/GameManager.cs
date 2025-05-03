@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnemyController _enemy;
     [SerializeField] private Button _continueButton;
     [SerializeField] private TextMeshProUGUI _battleLogText;
+    [SerializeField] private CardPanel _cardPanel;
 
     private bool _continuePressed;
     private bool _battleEnded;
@@ -60,12 +61,12 @@ public class GameManager : MonoBehaviour
             _player.StartTurn();
 
             yield return new WaitUntil(() =>
-                _continuePressed ||
-                _player.DicePanel.GetDice().Count == 0
+                _continuePressed
             );
 
             _continueButton.gameObject.SetActive(false);
             _player.DicePanel.ClearDice();
+            _player.CardPanel.ClearCard();
             Log("Ход игрока завершён.");
 
             if (_enemy == null || !_enemy.TryGetComponent<HealthComponent>(out var enemyHealth) || enemyHealth.CurrentHealth <= 0)
@@ -75,8 +76,8 @@ public class GameManager : MonoBehaviour
             }
 
             Log("Ход врага.");
-            _enemy.StartTurn();
-            yield return new WaitForSeconds(1f);
+            yield return _enemy.StartTurn();
+            Log("Ход врага завершён.");
 
             if (_player == null || !_player.TryGetComponent<HealthComponent>(out var playerHealth) || playerHealth.CurrentHealth <= 0)
             {

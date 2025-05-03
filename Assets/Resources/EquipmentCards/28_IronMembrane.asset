@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5f90d9764624945bedbe6658b59d2e, type: 3}
+  m_Name: 28_IronMembrane
+  m_EditorClassIdentifier: 
+  _name: "\u0416\u0435\u043B\u0435\u0437\u043D\u0430\u044F \u043F\u043B\u0451\u043D\u043A\u0430"
+  _description: "\u0414\u043E\u0431\u0430\u0432\u043B\u044F\u0435\u0442 4 \u0449\u0438\u0442\u0430"
+  _usageCount: 1
+  _condition: {fileID: 11400000, guid: 44e96ab198063a64782f4d0ef04951f0, type: 2}
+  _effects:
+  - {fileID: 11400000, guid: 790b3a01710651545ac68cb47ea22717, type: 2}
+  _equipmentPower: 4

@@ -5,14 +5,17 @@ public class PathogenController : MonoBehaviour
 {
     [SerializeField] private PathogenDefinition _definition;
     [SerializeField] private Transform _equipmentPanel;
-    [SerializeField] private EquipmentCard _equipmentCardPrefab;
+
     [SerializeField] private DicePanel _dicePanel;
     [SerializeField] private DiceDefinition _diceDefinition;
+
+    [SerializeField] private CardPanel _cardPanel;
 
     private HealthComponent _healthComponent;
     private EnemyController _enemyController;
 
     public DicePanel DicePanel => _dicePanel;
+    public CardPanel CardPanel => _cardPanel;
 
     private void Awake()
     {
@@ -23,21 +26,19 @@ public class PathogenController : MonoBehaviour
     private void Start()
     {
         _healthComponent.InitializeHealth();
-        SpawnEquipment();
     }
 
     private void SpawnEquipment()
     {
         foreach (var eqDef in _definition.EquipmentDefinitions)
         {
-            var card = Instantiate(_equipmentCardPrefab, _equipmentPanel);
-            card.Initialize(eqDef);
+            _cardPanel.AddEquipment(eqDef);
         }
     }
 
     public bool TryActivateEquipment(EquipmentCard card, Dice dice)
     {
-        card.ActivateEquipment(gameObject, _enemyController.gameObject, dice);        
+        card.ActivateEquipment(gameObject, _enemyController.gameObject, dice);
         return true;
     }
 
@@ -53,5 +54,6 @@ public class PathogenController : MonoBehaviour
         _dicePanel.ClearDice();
         for (int i = 0; i < _dicePanel.InitialCount; i++)
             _dicePanel.AddDice(_diceDefinition);
+        SpawnEquipment();
     }
 }

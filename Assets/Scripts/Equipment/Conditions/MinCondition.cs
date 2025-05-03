@@ -11,9 +11,9 @@ public class MinCondition : AbstractEquipmentCondition
         return diceValue >= neededValue;
     }
 
-    public override void ChangeCondition(int diceValue)
+    public override bool ChangeCondition(int diceValue)
     {
         Debug.Log($"EquipmentCard: Выпавшее значение {diceValue} меньше необходимого.");
-        return;
+        return false;
     }
 }
