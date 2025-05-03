@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnemyController _enemy;
     [SerializeField] private Button _continueButton;
     [SerializeField] private TextMeshProUGUI _battleLogText;
-    [SerializeField] private CardPanel _cardPanel;
 
     [SerializeField] private CountCondition[] _countConditions;
 
@@ -94,7 +93,6 @@ public class GameManager : MonoBehaviour
         }
 
         Log("Бой завершён.");
-        // Здесь сделать очищение всех ConditionCount (хз, как)
     }
 
     public void Log(string message)

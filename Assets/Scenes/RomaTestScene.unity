@@ -1371,10 +1371,12 @@ MonoBehaviour:
   _enemy: {fileID: 2131646190}
   _continueButton: {fileID: 1304851588}
   _battleLogText: {fileID: 777464908}
-  _cardPanel: {fileID: 0}
+  _cardPanel: {fileID: 692532619}
   _countConditions:
   - {fileID: 11400000, guid: 44e96ab198063a64782f4d0ef04951f0, type: 2}
   - {fileID: 11400000, guid: e2946288e9f8cab41b513a9c8a85bebf, type: 2}
+  - {fileID: 11400000, guid: 9fe91b52ef0959b4390681cbd25a2126, type: 2}
+  - {fileID: 11400000, guid: f026b71f44dfd73419b07c189c28755a, type: 2}
   - {fileID: 11400000, guid: c4319159babb8cb4facfbecdc248126c, type: 2}
   - {fileID: 11400000, guid: 9749118f42e3df84682725d2fa441ebe, type: 2}
   - {fileID: 11400000, guid: 7404032677f92ce4e8356e3062a9b892, type: 2}
