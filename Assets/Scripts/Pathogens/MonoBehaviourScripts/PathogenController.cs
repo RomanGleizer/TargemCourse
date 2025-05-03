@@ -37,9 +37,6 @@ public class PathogenController : MonoBehaviour
 
     public bool TryActivateEquipment(EquipmentCard card, Dice dice)
     {
-        if (!card.CanActivate(dice.Value))
-            return false;
-
         card.ActivateEquipment(gameObject, _enemyController.gameObject, dice.Value);
         Destroy(dice.gameObject);
         return true;

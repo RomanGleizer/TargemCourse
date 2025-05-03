@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _battleLogText;
 
     private bool _continuePressed;
+    private bool _battleEnded;
 
     private void Awake()
     {
@@ -21,6 +22,20 @@ public class GameManager : MonoBehaviour
 
         _continueButton.onClick.AddListener(OnContinueClicked);
         _continueButton.gameObject.SetActive(false);
+
+        var playerHealth = _player.GetComponent<HealthComponent>();
+        playerHealth.OnDeath += () => EndBattle(playerWon: false);
+
+        var enemyHealth = _enemy.GetComponent<HealthComponent>();
+        enemyHealth.OnDeath += () => EndBattle(playerWon: true);
+    }
+
+    private void EndBattle(bool playerWon)
+    {
+        if (_battleEnded) return;
+        _battleEnded = true;
+        _continuePressed = true;
+        Log(playerWon ? "Игрок победил!" : "Враг победил!");
     }
 
     private void Start()
@@ -53,16 +68,17 @@ public class GameManager : MonoBehaviour
             _player.DicePanel.ClearDice();
             Log("Ход игрока завершён.");
 
-            Log("Ход врага.");
-            _enemy.StartTurn();
-            yield return new WaitForSeconds(1f);
-
-            if (_enemy.GetComponent<HealthComponent>().CurrentHealth <= 0)
+            if (_enemy == null || !_enemy.TryGetComponent<HealthComponent>(out var enemyHealth) || enemyHealth.CurrentHealth <= 0)
             {
                 Log("Игрок победил!");
                 break;
             }
-            if (_player.GetComponent<HealthComponent>().CurrentHealth <= 0)
+
+            Log("Ход врага.");
+            _enemy.StartTurn();
+            yield return new WaitForSeconds(1f);
+
+            if (_player == null || !_player.TryGetComponent<HealthComponent>(out var playerHealth) || playerHealth.CurrentHealth <= 0)
             {
                 Log("Враг победил!");
                 break;
@@ -71,6 +87,7 @@ public class GameManager : MonoBehaviour
 
         Log("Бой завершён.");
     }
+
     public void Log(string message)
     {
         _battleLogText.text += message + "\n";
