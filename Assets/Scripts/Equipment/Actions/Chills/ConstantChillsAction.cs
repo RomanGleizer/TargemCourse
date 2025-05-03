@@ -7,6 +7,6 @@ public class ConstantChillsAction : AbstractChillsAction
 {
     protected override int CalculateChills()
     {
-        return 1 + CurrentChills;
+        return 1 + CurrentChills;        
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\u0421\u043A\u0432\u0435\u0440\u043D\u044B\u0439 \u043A\u0430\u0448\u0435\u043B\u044C"
   _description: "3 \u0443\u0440\u043E\u043D\u0430 "
-  _usageCount: 2
+  _usageCount: 1
   _condition: {fileID: 11400000, guid: 9d060b6c9fe91f64dbe541d65ccdd8ac, type: 2}
   _effects:
   - {fileID: 11400000, guid: f8d470ab307284b4d8a583c59e43b43c, type: 2}

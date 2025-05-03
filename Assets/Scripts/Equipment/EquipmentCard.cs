@@ -38,11 +38,18 @@ public class EquipmentCard : MonoBehaviour
         return cond == null || cond.IsSatisfied(diceValue);
     }
 
-    public void ActivateEquipment(GameObject attacker, GameObject target, int diceValue)
+    public void ActivateEquipment(GameObject attacker, GameObject target, Dice dice)
     {
-        if (!CanActivate(diceValue)) return;
+        var cond = _definition.Condition;
+        if (!CanActivate(dice.Value))
+        {
+            cond.ChangeCondition(dice.Value);
+            return;
+        };
+
+        Destroy(dice);
         foreach (var effect in _definition.Effects)
-            effect.ApplyEffect(attacker, target, diceValue);
+            effect.ApplyEffect(attacker, target, dice.Value);
 
         _remainingUses--;
         if (_remainingUses <= 0)

@@ -10,6 +10,9 @@ public abstract class AbstractDamageAction : AbstractAction
         if (target.TryGetComponent<HealthComponent>(out var health))
         {
             health.TakeDamage(damage);
+
+            Debug.Log("Done damage " + damage);
+            Debug.Log("Current health " + health.CurrentHealth);
         }
         else
         {
