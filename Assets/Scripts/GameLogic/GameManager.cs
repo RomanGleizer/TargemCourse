@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator BattleLoop()
     {
+        GameModeManager.Instance.SetMode(GameModeManager.Mode.Battle);
+
         foreach (var cond in _countConditions)
         {
             cond.ResetCondition();

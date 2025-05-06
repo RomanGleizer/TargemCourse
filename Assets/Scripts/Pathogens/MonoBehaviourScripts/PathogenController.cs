@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(HealthComponent))]
-[RequireComponent(typeof(PathogenMovement))]
 public class PathogenController : MonoBehaviour
 {
     [SerializeField] private PathogenDefinition _definition;
@@ -9,7 +8,6 @@ public class PathogenController : MonoBehaviour
     [SerializeField] private DicePanel _dicePanel;
     [SerializeField] private DiceDefinition _diceDefinition;
     [SerializeField] private CardPanel _cardPanel;
-    [SerializeField] private MapNode _startNode;
 
     private HealthComponent _healthComponent;
     private EnemyController _enemyController;
@@ -18,7 +16,6 @@ public class PathogenController : MonoBehaviour
     
     public CardPanel CardPanel => _cardPanel;
 
-    public MapNode CurrentNode { get; private set; }
 
     private void Awake()
     {
@@ -26,11 +23,18 @@ public class PathogenController : MonoBehaviour
         _enemyController = FindObjectOfType<EnemyController>();
     }
 
+    private void OnEnable()
+    {
+        GameModeManager.Instance.OnModeChanged += HandleModeChanged;
+    }
+
+    private void OnDisable()
+    {
+        GameModeManager.Instance.OnModeChanged -= HandleModeChanged;
+    }
+
     private void Start()
     {
-        CurrentNode = _startNode;
-        transform.position = CurrentNode.transform.position;
-
         _healthComponent.InitializeHealth();
     }
 
@@ -42,9 +46,13 @@ public class PathogenController : MonoBehaviour
         }
     }
 
+    private void HandleModeChanged(GameModeManager.Mode mode)
+    {
+        enabled = mode == GameModeManager.Mode.Battle;
+    }
+
     public void MoveToNode(MapNode node)
     {
-        CurrentNode = node;
         transform.position = node.transform.position;
     }
 
@@ -59,13 +67,15 @@ public class PathogenController : MonoBehaviour
         if (_healthComponent.CurrentPoison > 0)
             _healthComponent.TakeDamageByPoison(_healthComponent.CurrentPoison);
 
-        foreach (var card in _equipmentPanel
-                             .GetComponentsInChildren<EquipmentCard>())
+        foreach (var card in _equipmentPanel.GetComponentsInChildren<EquipmentCard>())
             card.ResetUses();
 
         _dicePanel.ClearDice();
         for (int i = 0; i < _dicePanel.InitialCount; i++)
             _dicePanel.AddDice(_diceDefinition);
-        SpawnEquipment();
+
+        _cardPanel.ClearCard();
+        foreach (var eqDef in _definition.EquipmentDefinitions)
+            _cardPanel.AddEquipment(eqDef);
     }
 }

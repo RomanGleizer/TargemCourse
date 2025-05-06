@@ -1,16 +1,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
+    [SerializeField] private Button _continueButton;
+
     private List<MapNode> _allNodes;
     private int _currentLayerIndex;
 
     private void Awake()
     {
+        GameModeManager.Instance?.SetMode(GameModeManager.Mode.Map);
+
         _allNodes = FindObjectsOfType<MapNode>().ToList();
         ShowOnlyLayer(0);
+
+        if (_continueButton != null)
+            _continueButton.onClick.AddListener(OnContinueClicked);
+        else
+            Debug.LogWarning($"[{nameof(MapManager)}] _continueButton не назначена в инспекторе", this);
+    }
+
+    private void OnContinueClicked()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void ShowOnlyLayer(int layerIndex)

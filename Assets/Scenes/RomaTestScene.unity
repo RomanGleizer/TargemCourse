@@ -1371,7 +1371,6 @@ MonoBehaviour:
   _enemy: {fileID: 2131646190}
   _continueButton: {fileID: 1304851588}
   _battleLogText: {fileID: 777464908}
-  _cardPanel: {fileID: 692532619}
   _countConditions:
   - {fileID: 11400000, guid: 44e96ab198063a64782f4d0ef04951f0, type: 2}
   - {fileID: 11400000, guid: e2946288e9f8cab41b513a9c8a85bebf, type: 2}
@@ -1722,6 +1721,7 @@ GameObject:
   - component: {fileID: 1616177625}
   - component: {fileID: 1616177624}
   - component: {fileID: 1616177623}
+  - component: {fileID: 1616177626}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1736,7 +1736,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616177622}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1616177624
 Camera:
   m_ObjectHideFlags: 0
@@ -1803,6 +1803,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1616177626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616177622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc829b7eb0eb6c449aec90d6e15edfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1693895205
 GameObject:
   m_ObjectHideFlags: 0
