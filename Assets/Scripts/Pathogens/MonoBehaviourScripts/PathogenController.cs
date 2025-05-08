@@ -38,14 +38,6 @@ public class PathogenController : MonoBehaviour
         _healthComponent.InitializeHealth();
     }
 
-    private void SpawnEquipment()
-    {
-        foreach (var eqDef in _definition.EquipmentDefinitions)
-        {
-            _cardPanel.AddEquipment(eqDef);
-        }
-    }
-
     private void HandleModeChanged(GameModeManager.Mode mode)
     {
         enabled = mode == GameModeManager.Mode.Battle;

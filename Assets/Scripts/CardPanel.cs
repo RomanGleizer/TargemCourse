@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,20 +9,19 @@ public class CardPanel : MonoBehaviour
 
     private void Start()
     {
-        _equipmentPanel = this.transform;
+        _equipmentPanel = transform;
     }
 
     public void ClearCard()
     {
-        foreach (Transform child in transform)
-        {
+        foreach (Transform child in _equipmentPanel)
             Destroy(child.gameObject);
-        }
     }
 
-    public void AddEquipment(EquipmentDefinition eqDef)
+    public EquipmentCard AddEquipment(EquipmentDefinition eqDef)
     {
         var card = Instantiate(_equipmentCardPrefab, _equipmentPanel);
         card.Initialize(eqDef);
+        return card;
     }
 }
