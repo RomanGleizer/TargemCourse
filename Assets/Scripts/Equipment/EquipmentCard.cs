@@ -9,7 +9,9 @@ public class EquipmentCard : MonoBehaviour
     private int _remainingUses;
 
     public EquipmentDefinition Definition => _definition;
+
     public int RemainingUses => _remainingUses;
+
     public void Initialize(EquipmentDefinition definition)
     {
         _definition = definition;
@@ -21,7 +23,6 @@ public class EquipmentCard : MonoBehaviour
     {
         UpdateConditionText();
     }
-
     public void UpdateConditionText()
     {
         _textCondition.text = _definition.Condition?.ConditionText ?? string.Empty;
@@ -44,7 +45,6 @@ public class EquipmentCard : MonoBehaviour
             {
                 _definition.Condition.ChangeCondition(dice.Value);
                 _textCondition.text = _definition.Condition.ConditionText;
-                Destroy(dice.gameObject);
             }
 
             if (!CanActivate(dice.Value))
