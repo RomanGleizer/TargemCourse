@@ -19,3 +19,4 @@ MonoBehaviour:
   _effects:
   - {fileID: 11400000, guid: 8f720b6077f76f341ac8444038e1a5b0, type: 2}
   _equipmentPower: 11
+  _equipmentSprite: {fileID: 21300000, guid: dd83be2468cb66b4f8a128772e132b3a, type: 3}

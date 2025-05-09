@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152ddc1be5b6c9b448fff9a77720ead1, type: 3}
+  m_Name: Pathogen_2
+  m_EditorClassIdentifier: 
+  _equipmentDefinitions:
+  - {fileID: 11400000, guid: dfc99e7f685d74844a23adbf345419b8, type: 2}
+  - {fileID: 11400000, guid: 09e5f6a721b27354f82005e048591b37, type: 2}
+  - {fileID: 11400000, guid: 5265c76c3acd3c843ad3f70507bd295f, type: 2}
+  - {fileID: 11400000, guid: bcf0be6577125c745aa5e0390fb26f70, type: 2}
+  _pathogenName: Patogen2
+  _description: "\u0412\u0442\u043E\u0440\u043E\u0439 \u043F\u0430\u0442\u043E\u0433\u0435\u043D"

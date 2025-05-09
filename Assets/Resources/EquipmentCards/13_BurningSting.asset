@@ -20,3 +20,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 93e267050bf1ea649b71891204994210, type: 2}
   - {fileID: 11400000, guid: 41a87b43647f1944e89ae432cddb2c52, type: 2}
   _equipmentPower: 22
+  _equipmentSprite: {fileID: 21300000, guid: 5ccb66f165a17324da702808c4949d1e, type: 3}

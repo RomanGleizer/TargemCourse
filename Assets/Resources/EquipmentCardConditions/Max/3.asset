@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 430a48d620920264f97870baef52d506, type: 3}
   m_Name: 3
   m_EditorClassIdentifier: 
-  ConditionText: "\u041C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E
-    3"
+  ConditionText: Max 3
+  ConditionSprite: {fileID: 21300000, guid: 0f3b49de6a63f8a47883df84fd926c5c, type: 3}
   neededValue: 3

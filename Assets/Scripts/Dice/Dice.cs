@@ -1,14 +1,15 @@
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class Dice : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textNumber;
+    [SerializeField] private Sprite[] _diceSprite;
+    [SerializeField] private Image _diceImage;
 
     private int _value;
-    private DiceDefinition _definition;
-    private PathogenController _player;
+    private DiceDefinition _definition; 
 
     public int Value => _value;
 
@@ -28,6 +29,8 @@ public class Dice : MonoBehaviour
             val = Random.Range(1, max + 1);
         } while (_definition.OnlyEven && val % 2 != 0);
         _value = val;
-        _textNumber.text = _value.ToString();
+        _diceImage.sprite = _diceSprite[val-1];
+
+        //_textNumber.text = _value.ToString();
     }
 }

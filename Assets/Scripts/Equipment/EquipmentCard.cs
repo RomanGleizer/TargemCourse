@@ -1,10 +1,15 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EquipmentCard : MonoBehaviour
 {
     [SerializeField] private EquipmentDefinition _definition;
-    [SerializeField] private TextMeshProUGUI _textCondition;
+    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private TextMeshProUGUI _name;
+    [SerializeField] private TextMeshProUGUI _condition;
+    [SerializeField] private Image _equipImage;
+    [SerializeField] private Image _conditionImage;
 
     private int _remainingUses;
 
@@ -16,16 +21,20 @@ public class EquipmentCard : MonoBehaviour
     {
         _definition = definition;
         ResetUses();
-        UpdateConditionText();
+        UpdateInformation();
     }
 
     void Start()
     {
-        UpdateConditionText();
+        UpdateInformation();
     }
-    public void UpdateConditionText()
+    public void UpdateInformation()
     {
-        _textCondition.text = _definition.Condition?.ConditionText ?? string.Empty;
+        _text.text = _definition.Description ?? string.Empty;
+        _name.text = _definition.Name ?? string.Empty;
+        _condition.text = _definition.Condition?.ConditionText ?? string.Empty;
+        _conditionImage.sprite = _definition.Condition.ConditionSprite;
+        _equipImage.sprite = _definition.Sprite;
     }
 
     public bool CanActivate(int diceValue)
@@ -41,16 +50,31 @@ public class EquipmentCard : MonoBehaviour
     {
         if (!CanActivate(dice.Value))
         {
-            if (_definition.Condition != null)
+            _definition.Condition.ChangeCondition(dice.Value);
+            if (_definition.Condition is CountCondition countCondition)
             {
-                _definition.Condition.ChangeCondition(dice.Value);
-                _textCondition.text = _definition.Condition.ConditionText;
+                _condition.text = _definition.Condition.ConditionText;
+                Destroy(dice.gameObject);
+                if (CanActivate(dice.Value))
+                {
+                    _definition.Condition.ResetCondition();
+
+                    foreach (var effect in _definition.Effects)
+                        effect.ApplyEffect(attacker, target, dice.Value);
+
+                    if (_remainingUses > 0)
+                    {
+                        _remainingUses--;
+                        if (_remainingUses == 0)
+                        {
+                            Destroy(gameObject);
+                            return;
+                        }
+                    }
+                }
+                //можно ли тут сделать то, чтобы не было повторений?                
             }
-
-            if (!CanActivate(dice.Value))
-                return;
-
-            _definition.Condition.ResetCondition();
+            return;
         }
 
         Destroy(dice.gameObject);
@@ -68,7 +92,7 @@ public class EquipmentCard : MonoBehaviour
             }
         }
 
-        UpdateConditionText();
+        UpdateInformation(); //нужно ли тут это?
     }
 
     public void ResetUses()

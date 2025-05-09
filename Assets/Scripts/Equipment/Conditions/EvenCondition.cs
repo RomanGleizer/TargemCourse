@@ -8,10 +8,9 @@ public class EvenCondition : AbstractEquipmentCondition
         return diceValue % 2 == 0;
     }
 
-    public override bool ChangeCondition(int diceValue)
+    public override void ChangeCondition(int diceValue)
     {
         Debug.Log($"EquipmentCard: Выпавшее значение {diceValue} нечетное.");
-        return false;
     }
 
     public override void ResetCondition()

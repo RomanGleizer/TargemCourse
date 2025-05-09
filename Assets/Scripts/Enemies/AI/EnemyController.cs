@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private DicePanel _dicePanel;
     [SerializeField] private DiceDefinition _diceDefinition;
+    [SerializeField] private EnemyDefinition _enemyDefinition;
+    [SerializeField] private Image _enemyImage;
 
-    [SerializeField] private List<EquipmentDefinition> _equipmentDefinitions;
+    //[SerializeField] private List<EquipmentDefinition> _equipmentDefinitions;
     [SerializeField] private CardPanel _cardPanel;
 
     [SerializeField] private float _pulseDuration = 0.5f;
@@ -26,6 +29,7 @@ public class EnemyController : MonoBehaviour
         _healthComponent = GetComponent<HealthComponent>();
         _playerController = FindObjectOfType<PathogenController>();
         _healthComponent.InitializeHealth();
+        _enemyImage.sprite = _enemyDefinition.EnemySprite;
     }
 
     public IEnumerator StartTurn()
@@ -54,7 +58,7 @@ public class EnemyController : MonoBehaviour
     {
         ClearCardsUI();
         _equipmentCardsUI = new List<EquipmentCard>();
-        foreach (var eqDef in _equipmentDefinitions)
+        foreach (var eqDef in _enemyDefinition.EquipmentDefinitions)
         {
             var card = _cardPanel.AddEquipment(eqDef);
             _equipmentCardsUI.Add(card);
@@ -76,9 +80,9 @@ public class EnemyController : MonoBehaviour
     {
         var diceList = _dicePanel.GetDice();
 
-        for (int i = 0; i < _equipmentDefinitions.Count; i++)
+        for (int i = 0; i < _enemyDefinition.EquipmentDefinitions.Count; i++)
         {
-            var eqDef = _equipmentDefinitions[i];
+            var eqDef = _enemyDefinition.EquipmentDefinitions[i];
             var valid = diceList
                 .Where(d => eqDef.Condition == null || eqDef.Condition.IsSatisfied(d.Value))
                 .OrderBy(d => d.Value)

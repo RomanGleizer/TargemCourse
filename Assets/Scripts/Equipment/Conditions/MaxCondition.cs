@@ -9,10 +9,9 @@ public class MaxCondition : AbstractEquipmentCondition
         return diceValue <= neededValue;
     }
 
-    public override bool ChangeCondition(int diceValue)
+    public override void ChangeCondition(int diceValue)
     {
         Debug.Log($"EquipmentCard: Выпавшее значение {diceValue} больше необходимого.");
-        return false;
     }
 
     public override void ResetCondition()

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: 15_36
   m_EditorClassIdentifier: 
   ConditionText: 15
+  ConditionSprite: {fileID: 21300000, guid: 0f3b49de6a63f8a47883df84fd926c5c, type: 3}
   neededValue: 15
   _initialValue: 15

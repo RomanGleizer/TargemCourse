@@ -12,12 +12,10 @@ public class CountCondition : AbstractEquipmentCondition
         return neededValue <= 0;
     }
 
-    public override bool ChangeCondition(int diceValue)
+    public override void ChangeCondition(int diceValue)
     {       
         neededValue -= diceValue;
         ConditionText = neededValue.ToString();
-
-        return true;
     }
 
     public override void ResetCondition()

@@ -116,6 +116,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _textNumber: {fileID: 445049650135001098}
+  _diceSprite:
+  - {fileID: 21300000, guid: 99d6ce8da15ceb74fab9c6899f273190, type: 3}
+  - {fileID: 21300000, guid: d3586f4927705e74dad908dbcf009426, type: 3}
+  - {fileID: 21300000, guid: 62c639c90bbf98946b63c7604cc957b5, type: 3}
+  - {fileID: 21300000, guid: 05c10ec3177eb094b93ab35cf7c1b0ab, type: 3}
+  - {fileID: 21300000, guid: d0ba664106b2f3147856715cfcf24e38, type: 3}
+  - {fileID: 21300000, guid: 244c2222a7e08dc46b7385a1ff63b007, type: 3}
+  _diceImage: {fileID: 5328612323466409397}
 --- !u!1 &7087220864896129648
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

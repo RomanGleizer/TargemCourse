@@ -10,10 +10,9 @@ public class WithoutCondition : AbstractEquipmentCondition
         return true;
     }
 
-    public override bool ChangeCondition(int diceValue)
+    public override void ChangeCondition(int diceValue)
     {
         Debug.Log($"Какая-то мощная ошибка, так не должно быть :(");
-        return false;
     }
 
     public override void ResetCondition()
