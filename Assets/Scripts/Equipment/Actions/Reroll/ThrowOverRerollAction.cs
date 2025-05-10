@@ -7,9 +7,14 @@ public class ThrowOverRerollAction : AbstractRerollAction
 {
     protected override void DoReroll(GameObject target, GameObject enemy, int diceValue)
     {
-        if (target.TryGetComponent<DicePanel>(out DicePanel dicePanel))
+        if (target.TryGetComponent<PathogenController>(out PathogenController pathogen))
         {
-            dicePanel.AddDice();
+            pathogen.DicePanel.AddDice();
+        }
+        
+        if (target.TryGetComponent<EnemyController>(out EnemyController enemyCon))
+        {
+            enemyCon.DicePanel.AddDice();
         }
     }
 }

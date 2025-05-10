@@ -51,28 +51,10 @@ public class EquipmentCard : MonoBehaviour
         if (!CanActivate(dice.Value))
         {
             _definition.Condition.ChangeCondition(dice.Value);
-            if (_definition.Condition is CountCondition countCondition)
+            if (_definition.Condition is CountCondition countCondition1)
             {
                 _condition.text = _definition.Condition.ConditionText;
-                Destroy(dice.gameObject);
-                if (CanActivate(dice.Value))
-                {
-                    _definition.Condition.ResetCondition();
-
-                    foreach (var effect in _definition.Effects)
-                        effect.ApplyEffect(attacker, target, dice.Value);
-
-                    if (_remainingUses > 0)
-                    {
-                        _remainingUses--;
-                        if (_remainingUses == 0)
-                        {
-                            Destroy(gameObject);
-                            return;
-                        }
-                    }
-                }
-                //можно ли тут сделать то, чтобы не было повторений?                
+                Destroy(dice.gameObject);                              
             }
             return;
         }
@@ -81,6 +63,11 @@ public class EquipmentCard : MonoBehaviour
 
         foreach (var effect in _definition.Effects)
             effect.ApplyEffect(attacker, target, dice.Value);
+
+        if (_definition.Condition is CountCondition countCondition)
+        {
+            _definition.Condition.ResetCondition();
+        }
 
         if (_remainingUses > 0)
         {
@@ -91,8 +78,6 @@ public class EquipmentCard : MonoBehaviour
                 return;
             }
         }
-
-        UpdateInformation(); //нужно ли тут это?
     }
 
     public void ResetUses()

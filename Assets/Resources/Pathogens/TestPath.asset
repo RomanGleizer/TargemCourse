@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152ddc1be5b6c9b448fff9a77720ead1, type: 3}
+  m_Name: TestPath
+  m_EditorClassIdentifier: 
+  _equipmentDefinitions:
+  - {fileID: 11400000, guid: 9fb804a5ddcd06d4fa77ae23e87f5536, type: 2}
+  - {fileID: 11400000, guid: 43e2b1ecba69a8244bc2aff5f6c852cb, type: 2}
+  - {fileID: 11400000, guid: c4297ab4cdd37da439c0a04ff250cfb6, type: 2}
+  - {fileID: 11400000, guid: 813ec2fe869e2ff42aab277e25290124, type: 2}
+  - {fileID: 11400000, guid: 5265c76c3acd3c843ad3f70507bd295f, type: 2}
+  _pathogenName: 
+  _description: 

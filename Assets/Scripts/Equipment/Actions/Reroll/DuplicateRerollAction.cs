@@ -5,11 +5,19 @@ public class DuplicateRerollAction : AbstractRerollAction
 {
     protected override void DoReroll(GameObject target, GameObject enemy, int diceValue)
     {
-        if (target.TryGetComponent<DicePanel>(out DicePanel dicePanel))
+        if (target.TryGetComponent<PathogenController>(out PathogenController pathogen))
         {
             for (int i = 0; i < 2; i++)
             {
-                dicePanel.AddDice(diceValue);
+                pathogen.DicePanel.AddDice(diceValue);
+            }
+        }
+        
+        if (target.TryGetComponent<EnemyController>(out EnemyController enemyCon))
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                enemyCon.DicePanel.AddDice(diceValue);
             }
         }
     }

@@ -6,6 +6,7 @@ public class DicePanel : MonoBehaviour
 {
     [SerializeField] private int _diceCount = 3;
     [SerializeField] private GameObject dicePrefab;
+    [SerializeField] private DiceDefinition _diceDefinition;
 
     private Transform parentTransform;
     private int _currentHeat;
@@ -21,14 +22,31 @@ public class DicePanel : MonoBehaviour
 
     public void AddDice()
     {
+        parentTransform = GetComponent<Transform>();
         GameObject diceGO = Instantiate(dicePrefab, parentTransform);
         Dice dice = diceGO.GetComponent<Dice>();
+        dice.Initialize(_diceDefinition);
     }
 
     public void AddDice(int value)
     {
+        if (value == 7)
+        {
+            AddDice(1);
+            AddDice(6);
+            return;
+        }
+
+        if (value == 0)
+        {
+            AddDice(1);
+            return;
+        }
+
+        parentTransform = GetComponent<Transform>();
         GameObject diceGO = Instantiate(dicePrefab, parentTransform);
         Dice dice = diceGO.GetComponent<Dice>();
+        dice.Initialize(_diceDefinition, value);
     }
 
     public void AddDice(DiceDefinition definition)

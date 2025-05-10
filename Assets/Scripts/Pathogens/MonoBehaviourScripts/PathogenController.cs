@@ -63,7 +63,7 @@ public class PathogenController : MonoBehaviour
 
     public bool TryActivateEquipment(EquipmentCard card, Dice dice)
     {
-        card.ActivateEquipment(gameObject, _enemyController.gameObject, dice);
+        card.ActivateEquipment(this.gameObject, _enemyController.gameObject, dice);
         return true;
     }
 

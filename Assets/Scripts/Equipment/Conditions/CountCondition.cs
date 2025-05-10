@@ -9,7 +9,7 @@ public class CountCondition : AbstractEquipmentCondition
 
     public override bool IsSatisfied(int diceValue)
     {
-        return neededValue <= 0;
+        return neededValue - diceValue <= 0;
     }
 
     public override void ChangeCondition(int diceValue)

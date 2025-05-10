@@ -4,10 +4,15 @@ using UnityEngine;
 public class AddDiceValueRerollAction : AbstractRerollAction
 {
     protected override void DoReroll(GameObject target, GameObject enemy, int diceValue)
-    {
-        if (target.TryGetComponent<DicePanel>(out DicePanel dicePanel))
+    {        
+        if (target.TryGetComponent<PathogenController>(out PathogenController pathogen))
         {
-            dicePanel.AddDice(diceValue + 1);
+            pathogen.DicePanel.AddDice(diceValue + 1);
+        }
+        
+        if (target.TryGetComponent<EnemyController>(out EnemyController enemyCon))
+        {
+            enemyCon.DicePanel.AddDice(diceValue + 1);
         }
     }
 }

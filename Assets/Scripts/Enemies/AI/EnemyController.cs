@@ -24,6 +24,8 @@ public class EnemyController : MonoBehaviour
     private PathogenController _playerController;
     private List<EquipmentCard> _equipmentCardsUI;
 
+    public DicePanel DicePanel => _dicePanel;
+
     private void Awake()
     {
         _healthComponent = GetComponent<HealthComponent>();
