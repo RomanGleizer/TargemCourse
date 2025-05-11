@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestMap.unity
-    guid: 72509b39ac6df4a49a6f83ab15262212
-  - enabled: 1
-    path: Assets/Scenes/RomaTestScene.unity
-    guid: ec9b76d414c9e2a429d9e12f269f937e
+    path: Assets/Scenes/ChangePathogenScene.unity
+    guid: 8a6568342dcae3d48be0db1912eb9fda
   m_configObjects: {}

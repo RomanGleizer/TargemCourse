@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,6 +31,14 @@ public class GameManager : MonoBehaviour
 
         var enemyHealth = _enemy.GetComponent<HealthComponent>();
         enemyHealth.OnDeath += () => EndBattle(playerWon: true);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void EndBattle(bool playerWon)
