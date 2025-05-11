@@ -17,7 +17,6 @@ public class CardPanel : MonoBehaviour
         foreach (Transform child in _equipmentPanel)
             Destroy(child.gameObject);
     }
-
     public EquipmentCard AddEquipment(EquipmentDefinition eqDef)
     {
         var card = Instantiate(_equipmentCardPrefab, _equipmentPanel);

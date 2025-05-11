@@ -11,8 +11,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private DiceDefinition _diceDefinition;
     [SerializeField] private EnemyDefinition _enemyDefinition;
     [SerializeField] private Image _enemyImage;
-
-    //[SerializeField] private List<EquipmentDefinition> _equipmentDefinitions;
     [SerializeField] private CardPanel _cardPanel;
 
     [SerializeField] private float _pulseDuration = 0.5f;
@@ -82,20 +80,20 @@ public class EnemyController : MonoBehaviour
     {
         var diceList = _dicePanel.GetDice();
 
-        for (int i = 0; i < _enemyDefinition.EquipmentDefinitions.Count; i++)
+        for (int i = 0; i < _equipmentCardsUI.Count; i++)
         {
-            var eqDef = _enemyDefinition.EquipmentDefinitions[i];
+            var card = _equipmentCardsUI[i];
+
             var valid = diceList
-                .Where(d => eqDef.Condition == null || eqDef.Condition.IsSatisfied(d.Value))
+                .Where(d => card.CanActivate(d.Value))
                 .OrderBy(d => d.Value)
                 .ToList();
-            if (valid.Count == 0)
+            if (!valid.Any())
                 continue;
 
-            var chosenDice = valid.Last();
-            var uiCard = _equipmentCardsUI[i];
+            var chosen = valid.Last();
 
-            yield return uiCard.transform
+            yield return card.transform
                 .DOScale(1.2f, _pulseDuration)
                 .SetLoops(_pulseLoops, LoopType.Yoyo)
                 .WaitForCompletion();
@@ -103,11 +101,15 @@ public class EnemyController : MonoBehaviour
             if (_preEffectDelay > 0f)
                 yield return new WaitForSeconds(_preEffectDelay);
 
-            foreach (var effect in eqDef.Effects)
-                effect.ApplyEffect(gameObject, _playerController.gameObject, chosenDice.Value);
+            card.ActivateEquipment(gameObject, _playerController.gameObject, chosen);
 
-            diceList.Remove(chosenDice);
-            Destroy(chosenDice.gameObject);
+            diceList.Remove(chosen);
+
+            if (card.RemainingUses <= 0)
+            {
+                _equipmentCardsUI.RemoveAt(i);
+                i--;
+            }
 
             if (_postEffectDelay > 0f)
                 yield return new WaitForSeconds(_postEffectDelay);
