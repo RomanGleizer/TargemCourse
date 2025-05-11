@@ -40,6 +40,7 @@ public class DicePanel : MonoBehaviour
         if (value == 0)
         {
             AddDice(1);
+            AddDice(1);
             return;
         }
 
