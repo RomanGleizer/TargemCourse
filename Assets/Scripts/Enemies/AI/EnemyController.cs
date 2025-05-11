@@ -42,7 +42,6 @@ public class EnemyController : MonoBehaviour
 
         yield return ActivateEquipment();
 
-        // Очистка
         ClearDice();
         ClearCardsUI();
     }
@@ -59,10 +58,7 @@ public class EnemyController : MonoBehaviour
         ClearCardsUI();
         _equipmentCardsUI = new List<EquipmentCard>();
         foreach (var eqDef in _enemyDefinition.EquipmentDefinitions)
-        {
-            var card = _cardPanel.AddEquipment(eqDef);
-            _equipmentCardsUI.Add(card);
-        }
+            _equipmentCardsUI.Add(_cardPanel.AddEquipment(eqDef));
     }
 
     private void ClearCardsUI()
@@ -81,14 +77,17 @@ public class EnemyController : MonoBehaviour
         var diceList = _dicePanel.GetDice();
         for (int i = 0; i < _equipmentCardsUI.Count; i++)
         {
+            if (_playerController == null
+                || !_playerController.TryGetComponent<HealthComponent>(out var ph)
+                || ph.CurrentHealth <= 0f)
+                yield break;
+
             var card = _equipmentCardsUI[i];
 
             if (card.Definition.Condition is CountCondition)
             {
                 if (CanSatisfyCountCondition(card, diceList))
-                {
                     yield return HandleCountCondition(card, diceList);
-                }
             }
             else
             {
@@ -112,6 +111,11 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator HandleCountCondition(EquipmentCard card, List<Dice> diceList)
     {
+        if (_playerController == null
+            || !_playerController.TryGetComponent<HealthComponent>(out var ph)
+            || ph.CurrentHealth <= 0f)
+            yield break;
+
         var cond = (CountCondition)card.Definition.Condition;
         var needed = int.Parse(cond.ConditionText);
         var selected = new List<Dice>();
@@ -131,6 +135,11 @@ public class EnemyController : MonoBehaviour
 
         foreach (var die in selected)
         {
+            if (_playerController == null
+                || !_playerController.TryGetComponent<HealthComponent>(out var ph2)
+                || ph2.CurrentHealth <= 0f)
+                yield break;
+
             card.ActivateEquipment(gameObject, _playerController.gameObject, die);
             diceList.Remove(die);
         }
@@ -141,6 +150,11 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator HandleSingleCondition(EquipmentCard card, List<Dice> diceList)
     {
+        if (_playerController == null
+            || !_playerController.TryGetComponent<HealthComponent>(out var ph)
+            || ph.CurrentHealth <= 0f)
+            yield break;
+
         var valid = diceList
             .Where(d => card.CanActivate(d.Value))
             .OrderBy(d => d.Value)
@@ -155,6 +169,11 @@ public class EnemyController : MonoBehaviour
 
         if (_preEffectDelay > 0f)
             yield return new WaitForSeconds(_preEffectDelay);
+
+        if (_playerController == null
+            || !_playerController.TryGetComponent<HealthComponent>(out var ph2)
+            || ph2.CurrentHealth <= 0f)
+            yield break;
 
         card.ActivateEquipment(gameObject, _playerController.gameObject, chosen);
         diceList.Remove(chosen);
