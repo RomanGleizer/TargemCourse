@@ -14,8 +14,7 @@ public class PathogenController : MonoBehaviour
 
     private HealthComponent _healthComponent;
     private EnemyController _enemyController;
-
-    private bool _equipmentPopulatedThisTurn = false;
+    private bool _equipmentPopulatedThisTurn;
 
     public DicePanel DicePanel => _dicePanel;
     public CardPanel CardPanel => _cardPanel;
@@ -29,7 +28,11 @@ public class PathogenController : MonoBehaviour
     public PathogenDefinition Definition
     {
         get => _definition;
-        set => _definition = value;
+        set
+        {
+            _definition = value;
+            _equipmentPopulatedThisTurn = false;
+        }
     }
 
     private void Awake()
@@ -95,9 +98,6 @@ public class PathogenController : MonoBehaviour
 
     public bool TryActivateEquipment(EquipmentCard card, Dice dice)
     {
-        //if (!card.CanActivate(dice.Value))
-        //    return false;
-
         card.ActivateEquipment(gameObject, _enemyController.gameObject, dice);
         return true;
     }

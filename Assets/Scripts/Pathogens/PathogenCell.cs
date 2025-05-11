@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +12,7 @@ public class PathogenCell : MonoBehaviour
     {
         _pathogenIcon.sprite = _pathogenSprite;
     }
+
     public void ChoosePathogen()
     {
         _controller.Definition = _definition;
