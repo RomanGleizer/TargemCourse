@@ -10,5 +10,5 @@ public class PathogenDefinition : ScriptableObject
 
     public string PathogenName => _pathogenName;
     public string Description => _description;
-    public IReadOnlyList<EquipmentDefinition> EquipmentDefinitions => _equipmentDefinitions;
+    public IList<EquipmentDefinition> EquipmentDefinitions => _equipmentDefinitions;
 }

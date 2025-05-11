@@ -17,6 +17,5 @@ public class PathogenCell : MonoBehaviour
     {
         _controller.Definition = _definition;
         _controller.Image.sprite = _pathogenSprite;
-        _controller.ChangeEquipment();
     }
 }

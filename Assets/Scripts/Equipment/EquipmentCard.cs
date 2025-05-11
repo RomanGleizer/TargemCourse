@@ -28,12 +28,19 @@ public class EquipmentCard : MonoBehaviour
     {
         UpdateInformation();
     }
-    public void UpdateInformation()
+
+    public void SetRemainingUses(int uses)
+    {
+        _remainingUses = uses;
+        UpdateInformation();
+    }
+
+    private void UpdateInformation()
     {
         _text.text = _definition.Description ?? string.Empty;
         _name.text = _definition.Name ?? string.Empty;
         _condition.text = _definition.Condition?.ConditionText ?? string.Empty;
-        _conditionImage.sprite = _definition.Condition.ConditionSprite;
+        _conditionImage.sprite = _definition.Condition?.ConditionSprite;
         _equipImage.sprite = _definition.Sprite;
     }
 
@@ -46,28 +53,28 @@ public class EquipmentCard : MonoBehaviour
         return cond == null || cond.IsSatisfied(diceValue);
     }
 
-    public void ActivateEquipment(GameObject attacker, GameObject target, Dice dice)
+    public bool ActivateEquipment(GameObject attacker, GameObject target, Dice dice)
     {
-        if (!CanActivate(dice.Value))
+        int val = dice.Value;
+
+        if (!CanActivate(val))
         {
-            _definition.Condition.ChangeCondition(dice.Value);
-            if (_definition.Condition is CountCondition countCondition1)
-            {
-                _condition.text = _definition.Condition.ConditionText;
-                Destroy(dice.gameObject);                              
-            }
-            return;
+            _definition.Condition?.ChangeCondition(val);
+            UpdateInformation();
+
+            if (_definition.Condition is CountCondition)
+                Destroy(dice.gameObject);
+
+            return false;
         }
 
         Destroy(dice.gameObject);
 
         foreach (var effect in _definition.Effects)
-            effect.ApplyEffect(attacker, target, dice.Value);
+            effect.ApplyEffect(attacker, target, val);
 
-        if (_definition.Condition is CountCondition countCondition)
-        {
+        if (_definition.Condition is CountCondition)
             _definition.Condition.ResetCondition();
-        }
 
         if (_remainingUses > 0)
         {
@@ -75,13 +82,17 @@ public class EquipmentCard : MonoBehaviour
             if (_remainingUses == 0)
             {
                 Destroy(gameObject);
-                return;
+                return true;
             }
         }
+
+        UpdateInformation();
+        return true;
     }
 
     public void ResetUses()
     {
         _remainingUses = _definition.UsageCount;
+        UpdateInformation();
     }
 }

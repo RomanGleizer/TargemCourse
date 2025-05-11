@@ -87,6 +87,9 @@ public class GameManager : MonoBehaviour
             yield return _enemy.StartTurn();
             Log("Ход врага завершён.");
 
+            foreach (var p in FindObjectsOfType<PathogenController>())
+                p.ResetAllEquipment();
+
             if (_player == null || !_player.TryGetComponent<HealthComponent>(out var playerHealth) || playerHealth.CurrentHealth <= 0)
             {
                 Log("Враг победил!");
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour
         }
 
         Log("Бой завершён.");
+        // GameModeManager.Instance.SetMode(GameModeManager.Mode.Map);
     }
 
     public void Log(string message)
